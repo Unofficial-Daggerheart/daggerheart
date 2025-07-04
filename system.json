@@ -24,7 +24,29 @@
         "PLAYER": "OBSERVER",
         "ASSISTANT": "OWNER"
       }
-    }
+    },
+    {
+      "name": "classes",
+      "label": "Classes",
+      "path": "packs/Classes",
+      "type": "Item",
+      "system": "daggerheart",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
+    {
+      "name": "domains",
+      "label": "Domains",
+      "path": "packs/domains",
+      "type": "Item",
+      "system": "daggerheart",
+      "ownership": {
+        "PLAYER": "OBSERVER",
+        "ASSISTANT": "OWNER"
+      }
+    },
   ],
   "languages": [
     {
