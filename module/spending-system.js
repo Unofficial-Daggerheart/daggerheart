@@ -726,35 +726,67 @@ if (typeof clearStress === 'function') {
 export async function createDaggerheartMacro(data, slot) {
   if (data.type === "Item") {
     const item = await fromUuid(data.uuid);
+    const isItemInActor = data.uuid.startsWith("Actor.") && item && item.parent && item.parent.id === data.uuid.split(".")[1];
+    let command = "";
+    
     if (!item) return false;
     
-    const command = `const item = await fromUuid("${data.uuid}");
-if (!item) {
-  ui.notifications.warn("Item not found!");
+    if (item.type === "weapon" && isItemInActor) {
+      const actorId = data.uuid.split(".")[1];
+      command = `const actor = game.actors.get("${actorId}");
+const weaponName = "${item.name}";
+// Figure out if it's the main or off-hand weapon, get the modifier.
+const traitValue = ["weapon-main", "weapon-off"].reduce((acc, type) => {
+  if (actor.system[type]?.name === weaponName) {
+    acc = actor.system[type]["to-hit"].value;
+  }
+  return acc;
+}, null);
+
+if (traitValue === null) {
+  ui.notifications.warn(\`\${actor.name} does not have a \${weaponName} equipped.\`);
   return;
 }
 
-const itemData = item.system;
-const description = await TextEditor.enrichHTML(
-  itemData.description,
-  { enrichers: false, secrets: item.isOwner, async: true }
-);
-const chatCard = globalThis.daggerheart?.buildItemCardChat ?
-  globalThis.daggerheart.buildItemCardChat({
-    itemId: item.id,
-    actorId: item.parent?.id || '',
-    image: item.img,
-    name: item.name,
-    category: itemData.category || '',
-    rarity: itemData.rarity || '',
-    description
-  }) : \`<div class="item-card-chat">\${item.name}</div>\`;
+const title = \`Roll for \$\{weaponName\}\`;
 
-ChatMessage.create({
-    user: game.user.id,
-    speaker: item.parent ? ChatMessage.getSpeaker({ actor: item.parent }) : ChatMessage.getSpeaker(),
-    content: chatCard
-});`;
+actor.sheet._pendingRollType = "attack";
+actor.sheet._pendingWeaponName = weaponName;
+
+await game.daggerheart.rollHandler.dualityWithDialog({
+  title,
+  traitValue,
+  actor,
+});`
+    } else {
+      command = `const item = await fromUuid("${data.uuid}");
+  if (!item) {
+    ui.notifications.warn("Item not found!");
+    return;
+  }
+  
+  const itemData = item.system;
+  const description = await TextEditor.enrichHTML(
+    itemData.description,
+    { enrichers: false, secrets: item.isOwner, async: true }
+  );
+  const chatCard = globalThis.daggerheart?.buildItemCardChat ?
+    globalThis.daggerheart.buildItemCardChat({
+      itemId: item.id,
+      actorId: item.parent?.id || '',
+      image: item.img,
+      name: item.name,
+      category: itemData.category || '',
+      rarity: itemData.rarity || '',
+      description
+    }) : \`<div class="item-card-chat">\${item.name}</div>\`;
+  
+  ChatMessage.create({
+      user: game.user.id,
+      speaker: item.parent ? ChatMessage.getSpeaker({ actor: item.parent }) : ChatMessage.getSpeaker(),
+      content: chatCard
+  });`;
+    }
 
     const macroName = `${item.name}`;
     let macro = game.macros.find(m => m.name === macroName && m.flags?.["daggerheart.itemMacro"]) ||
