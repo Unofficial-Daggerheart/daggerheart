@@ -943,8 +943,6 @@ async function _sendDamageApplicationMessages(results, sourceActor, damageAmount
       severityIcon = "fas fa-sword";
     }
 
-    const isDead = newHealth >= maxHealth;
-
     let armorReductionText = "";
     if (armorSlotsUsed > 0) {
       const damageReduction = hpDamage - finalHpDamage;
@@ -956,8 +954,6 @@ async function _sendDamageApplicationMessages(results, sourceActor, damageAmount
     const publicContent = `<div class="damage-application-message">
       <h3><i class="${severityIcon}"></i> ${severityText}</h3>
       <p><strong>${target.name}</strong> takes <strong>${finalHpDamage} HP damage</strong>${armorReductionText}${sourceActor ? ` from <strong>${sourceActor.name}</strong>` : ''}.</p>
-      <p>Current damage: <strong>${newHealth}/${maxHealth}</strong></p>
-      ${isDead ? '<p class="damage-warning"><em>Character has fallen!</em></p>' : ''}
       ${undoId ? `<div class="damage-undo-container" style="margin-top: 0.5em;">
         <button class="undo-damage-button" data-undo-id="${undoId}" style="width: 100%;">
           <i class="fas fa-undo"></i> Undo
