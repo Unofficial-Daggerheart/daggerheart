@@ -1,11 +1,10 @@
 import { ModifierManager } from './modifierManager.js';
 
 export class DaggerheartMigrations {
-	static CURRENT_VERSION = '1.2.5';
+	static CURRENT_VERSION = '1.2.6';
 
 	static async migrateDocument(document) {
-		let needsUpdate = false;
-		const systemData = document.system;
+		let hasChanged = false;
 		const currentVersion = document.getFlag('daggerheart-unofficial', 'migrationVersion') || '1.0.0';
 
 		if (this.compareVersions(currentVersion, this.CURRENT_VERSION) < 0) {
@@ -14,11 +13,11 @@ export class DaggerheartMigrations {
 			);
 
 			if (this.compareVersions(currentVersion, '1.1.0') < 0) {
-				needsUpdate = this._migrateToLocationBased(document) || needsUpdate;
+				hasChanged = this._migrateToLocationBased(document) || hasChanged;
 			}
 
 			if (this.compareVersions(currentVersion, '1.1.1') < 0) {
-				needsUpdate = this._migrateWeaponEquipped(document) || needsUpdate;
+				hasChanged = this._migrateWeaponEquipped(document) || hasChanged;
 			}
 
 			const updateData = {};
@@ -27,7 +26,7 @@ export class DaggerheartMigrations {
 				const weaponMigration = this._migrateWeaponDataStructure(document);
 				if (weaponMigration) {
 					Object.assign(updateData, weaponMigration);
-					needsUpdate = true;
+					hasChanged = true;
 				}
 			}
 
@@ -35,7 +34,7 @@ export class DaggerheartMigrations {
 				const weaponItemMigration = this._migrateWeaponItemDataStructure(document);
 				if (weaponItemMigration) {
 					Object.assign(updateData, weaponItemMigration);
-					needsUpdate = true;
+					hasChanged = true;
 				}
 			}
 
@@ -48,7 +47,7 @@ export class DaggerheartMigrations {
 					const thresholdMigration = this._migrateThresholdDataStructure(document);
 					if (thresholdMigration) {
 						Object.assign(updateData, thresholdMigration);
-						needsUpdate = true;
+						hasChanged = true;
 					}
 				} catch (error) {
 					console.error(`❌ Error migrating threshold data for "${document.name}":`, error);
@@ -67,7 +66,7 @@ export class DaggerheartMigrations {
 					const thresholdFix = this._fixZeroThresholdDefaults(document);
 					if (thresholdFix) {
 						Object.assign(updateData, thresholdFix);
-						needsUpdate = true;
+						hasChanged = true;
 					}
 				} catch (error) {
 					console.error(`❌ Error fixing zero threshold defaults for "${document.name}":`, error);
@@ -83,7 +82,7 @@ export class DaggerheartMigrations {
 					const characterLevelModifier = this._addCharacterLevelModifier(document);
 					if (characterLevelModifier) {
 						Object.assign(updateData, characterLevelModifier);
-						needsUpdate = true;
+						hasChanged = true;
 					}
 				} catch (error) {
 					console.error(`❌ Error adding character level modifier for "${document.name}":`, error);
@@ -95,7 +94,7 @@ export class DaggerheartMigrations {
 					const modifierIdMigration = this._addModifierIds(document);
 					if (modifierIdMigration) {
 						Object.assign(updateData, modifierIdMigration);
-						needsUpdate = true;
+						hasChanged = true;
 					}
 				} catch (error) {
 					console.error(`❌ Error adding modifier IDs for "${document.name}":`, error);
@@ -107,10 +106,22 @@ export class DaggerheartMigrations {
 					const difficultyMigration = this._migrateDifficultyToModifierSystem(document);
 					if (difficultyMigration) {
 						Object.assign(updateData, difficultyMigration);
-						needsUpdate = true;
+						hasChanged = true;
 					}
 				} catch (error) {
 					console.error(`❌ Error migrating difficulty to modifier system for "${document.name}":`, error);
+				}
+			}
+
+			if (this.compareVersions(currentVersion, '1.2.6') < 0 && document.documentName === 'Actor') {
+				try {
+					const tokenResourceTrackers = this._migrateTokenResourceTrackers(document);
+					if (tokenResourceTrackers) {
+						Object.assign(updateData, tokenResourceTrackers);
+						hasChanged = true;
+					}
+				} catch (error) {
+					console.error(`❌ Error migrating token resource trackers "${document.name}":`, error);
 				}
 			}
 
@@ -118,18 +129,17 @@ export class DaggerheartMigrations {
 				const safetyScan = this._safetyCheckThresholdData(document);
 				if (safetyScan) {
 					Object.assign(updateData, safetyScan);
-					needsUpdate = true;
+					hasChanged = true;
 				}
 			}
 
-			if (needsUpdate) {
-				updateData['flags.daggerheart-unofficial.migrationVersion'] = this.CURRENT_VERSION;
-				await document.update(updateData);
-				console.log(`✅ Successfully migrated "${document.name}" to v${this.CURRENT_VERSION}`);
-			}
+			if (hasChanged) console.log(`✅ Successfully migrated "${document.name}" to v${this.CURRENT_VERSION}`);
+			// Always set the migration flag, there is no be a reason to run this twice on a document.
+			updateData['flags.daggerheart-unofficial.migrationVersion'] = this.CURRENT_VERSION;
+			await document.update(updateData);
 		}
 
-		return needsUpdate;
+		return hasChanged;
 	}
 
 	static _migrateToLocationBased(document) {
@@ -813,6 +823,33 @@ export class DaggerheartMigrations {
 		}
 
 		return needsUpdate ? updateData : null;
+	}
+
+	static _migrateTokenResourceTrackers(document) {
+		let needsUpdate = false;
+		const _update = attribute => {
+			switch (attribute) {
+				case 'barArmor':
+					needsUpdate = true;
+					return 'armorBar';
+				case 'barHealth':
+					needsUpdate = true;
+					return 'healthBar';
+				case 'barStress':
+					needsUpdate = true;
+					return 'stressBar';
+				default:
+					return attribute;
+			}
+		};
+		const data = {
+			prototypeToken: {
+				bar1: { attribute: _update(document.prototypeToken.bar1.attribute) },
+				bar2: { attribute: _update(document.prototypeToken.bar2.attribute) },
+			},
+		};
+
+		return needsUpdate ? data : null;
 	}
 
 	/**
