@@ -36,14 +36,29 @@ export class SimpleTokenDocument extends TokenDocument {
 		const data = super.getTrackedAttributeChoices(attributes);
 		data.forEach(entry => {
 			switch (entry.value) {
-				case 'barStress':
+				case 'hope':
+					entry.label = game.i18n.localize('DH.Hope');
+					break;
+				case 'armor':
+					entry.label = game.i18n.localize('DH.Armor');
+					break;
+				case 'stress':
+					entry.label = game.i18n.localize('DH.Stress');
+					break;
+				case 'health':
+					entry.label = game.i18n.localize('DH.Health');
+					break;
+				case 'hopeBar':
+					entry.label = game.i18n.localize('DH.HopeBar');
+					break;
+				case 'armorBar':
+					entry.label = game.i18n.localize('DH.ArmorBar');
+					break;
+				case 'stressBar':
 					entry.label = game.i18n.localize('DH.StressBar');
 					break;
-				case 'barHealth':
+				case 'healthBar':
 					entry.label = game.i18n.localize('DH.HealthBar');
-					break;
-				case 'barArmor':
-					entry.label = game.i18n.localize('DH.ArmorBar');
 					break;
 				default:
 					console.warn('Daggerheart Token: unkown attribute label');

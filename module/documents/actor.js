@@ -27,17 +27,27 @@ export class SimpleActor extends Actor {
 			this.system.hope.value = Math.max(0, Math.min(this.system.hope.value, this.system.hope.max || 0));
 		}
 
-		this.system.barHealth = {
+		this.system.hopeBar = {
+			max: this.system.hope.max || 0,
+			min: 0,
+			value: (this.system.hope.max || 6) - (this.system.hope.value || 0),
+		};
+		this.system.healthBar = {
 			max: this.system.health.max || 6,
 			min: 0,
 			value: (this.system.health.max || 6) - (this.system.health.value || 0),
 		};
-		this.system.barStress = {
+		this.system.stressBar = {
 			max: this.system.stress.max || 6,
 			min: 0,
 			value: (this.system.stress.max || 6) - (this.system.stress.value || 0),
 		};
-		this.system.barArmor = {
+		this.system.armor = {
+			max: this.system.defenses.armor.value || 0,
+			min: 0,
+			value: this.system.defenses['armor-slots'].value || 0,
+		};
+		this.system.armorBar = {
 			max: this.system.defenses.armor.value || 0,
 			min: 0,
 			value: (this.system.defenses.armor.value || 0) - (this.system.defenses['armor-slots'].value || 0),
@@ -377,22 +387,35 @@ export class SimpleActor extends Actor {
 		const updates = {};
 		const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-		if (attribute === 'barHealth') {
-			const bar = this.system.barHealth || { value: 0, min: 0, max: this.system.health?.max || 0 };
+		// Grab the transformed attributes
+		// else update the default value
+
+		if (attribute === 'hopeBar') {
+			const bar = this.system.hopeBar || { value: 0, min: 0, max: this.system.hope?.max || 0 };
+			const newBarValue = clamp(isDelta ? bar.value + value : Number(value), bar.min ?? 0, bar.max ?? 0);
+			const maxhope = this.system.hope?.max ?? 0;
+			const minhope = this.system.hope?.min ?? 0;
+			const newhope = clamp(maxhope - newBarValue, minhope, maxhope);
+			updates['system.hope.value'] = newhope;
+		} else if (attribute === 'healthBar') {
+			const bar = this.system.healthBar || { value: 0, min: 0, max: this.system.health?.max || 0 };
 			const newBarValue = clamp(isDelta ? bar.value + value : Number(value), bar.min ?? 0, bar.max ?? 0);
 			const maxHealth = this.system.health?.max ?? 0;
 			const minHealth = this.system.health?.min ?? 0;
 			const newHealth = clamp(maxHealth - newBarValue, minHealth, maxHealth);
 			updates['system.health.value'] = newHealth;
-		} else if (attribute === 'barStress') {
-			const bar = this.system.barStress || { value: 0, min: 0, max: this.system.stress?.max || 0 };
+		} else if (attribute === 'stressBar') {
+			const bar = this.system.stressBar || { value: 0, min: 0, max: this.system.stress?.max || 0 };
 			const newBarValue = clamp(isDelta ? bar.value + value : Number(value), bar.min ?? 0, bar.max ?? 0);
 			const maxStress = this.system.stress?.max ?? 0;
 			const minStress = this.system.stress?.min ?? 0;
 			const newStress = clamp(maxStress - newBarValue, minStress, maxStress);
 			updates['system.stress.value'] = newStress;
-		} else if (attribute === 'barArmor') {
-			const bar = this.system.barArmor || { value: 0, min: 0, max: this.system.defenses?.armor?.value || 0 };
+		} else if (attribute === 'armor') {
+			const bar = this.system.armor || { value: 0, min: 0, max: this.system.defenses?.armor?.value || 0 };
+			updates['system.defenses.armor-slots.value'] = clamp(Number(value), bar.min ?? 0, bar.max ?? 0);
+		} else if (attribute === 'armorBar') {
+			const bar = this.system.armorBar || { value: 0, min: 0, max: this.system.defenses?.armor?.value || 0 };
 			const newBarValue = clamp(isDelta ? bar.value + value : Number(value), bar.min ?? 0, bar.max ?? 0);
 			const armorMax = this.system.defenses?.armor?.value ?? 0;
 			const slotsMin = 0;

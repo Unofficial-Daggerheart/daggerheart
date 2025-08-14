@@ -215,7 +215,9 @@ Hooks.once('init', async function () {
 		CONFIG.Actor.trackableAttributes[t] = CONFIG.Actor.trackableAttributes[t] || {};
 		const bar = CONFIG.Actor.trackableAttributes[t].bar || [];
 		const value = CONFIG.Actor.trackableAttributes[t].value || [];
-		CONFIG.Actor.trackableAttributes[t].bar = Array.from(new Set([...bar, 'barHealth', 'barStress', 'barArmor']));
+		CONFIG.Actor.trackableAttributes[t].bar = Array.from(
+			new Set([...bar, 'hope', 'armor', 'health', 'stress', 'hopeBar', 'armorBar', 'healthBar', 'stressBar'])
+		);
 		CONFIG.Actor.trackableAttributes[t].value = Array.from(new Set([...value]));
 	}
 
@@ -1497,8 +1499,8 @@ Hooks.on('getSceneControlButtons', controls => {
 Hooks.on('preCreateActor', function (document, data, options, userId) {
 	const type = data.type || document.type;
 	const isCompanion = type === 'companion';
-	const primaryAttr = isCompanion ? 'barStress' : 'barHealth';
-	const secondaryAttr = isCompanion ? 'barHealth' : 'barStress';
+	const primaryAttr = isCompanion ? 'stressBar' : 'healthBar';
+	const secondaryAttr = isCompanion ? 'healthBar' : 'stressBar';
 
 	document.updateSource({
 		prototypeToken: foundry.utils.mergeObject(document.prototypeToken?.toObject() || {}, {
