@@ -1501,6 +1501,12 @@ export async function _dualityWithDialog(config) {
 	traitValue = traitValue || 0;
 	rollDetails = rollDetails || {};
 
+	if (typeof traitValue !== 'number') {
+		const oldValue = traitValue;
+		traitValue = parseInt(traitValue);
+		if (isNaN(traitValue)) console.error(`invalid traitValue: ${oldValue}`);
+	}
+
 	rollDetails.hopeDieSize = rollDetails.hopeDieSize || 'd12';
 	rollDetails.fearDieSize = rollDetails.fearDieSize || 'd12';
 	rollDetails.advantage = rollDetails.advantage || 0;
