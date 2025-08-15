@@ -32,7 +32,7 @@ export class ResourceField extends SchemaField {
 
 			max: new NumberField({
 				integer: true,
-				required: true,
+				required: false,
 				positive: true,
 				initial: options.max ?? 1,
 			}),

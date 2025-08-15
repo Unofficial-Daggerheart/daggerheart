@@ -117,11 +117,11 @@ export class DomainAbilitySidebar {
 		const bubbles = trackers
 			.map(
 				tracker => `
-      <div class="tracker-notification-bubble" 
-           data-item-id="${item.id}" 
+      <div class="tracker-notification-bubble"
+           data-item-id="${item.id}"
            data-tracker-id="${tracker.id}"
            style="background-color: ${tracker.color}"
-           title="${tracker.name}: ${tracker.value}${tracker.maxValue ? '/' + tracker.maxValue : ''}">
+           title="${tracker.name}: ${tracker.value}${tracker.max ? '/' + tracker.max : ''}">
         <span class="bubble-value">${tracker.value}</span>
       </div>
     `
@@ -423,8 +423,8 @@ export class DomainAbilitySidebar {
 
 			const oldValue = tracker.value;
 			tracker.value = Math.max(0, tracker.value + delta);
-			if (tracker.maxValue !== null) {
-				tracker.value = Math.min(tracker.value, tracker.maxValue);
+			if (tracker.max !== null) {
+				tracker.value = Math.min(tracker.value, tracker.max);
 			}
 
 			if (tracker.value !== oldValue) {

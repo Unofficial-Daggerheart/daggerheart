@@ -21,10 +21,10 @@ export class SheetTracker {
 	 * @param {string} trackerName - Name for the tracker
 	 * @param {string} hexColor - Hex color code (e.g., "#ff0000")
 	 * @param {number} initialValue - Starting value (default: 0)
-	 * @param {number} maxValue - Maximum value (optional)
+	 * @param {number} max - Maximum value (optional)
 	 * @returns {Promise<Object>} The created tracker data
 	 */
-	static async addTracker(actorRef, trackerName, hexColor = '#f3c267', initialValue = 0, maxValue = null) {
+	static async addTracker(actorRef, trackerName, hexColor = '#f3c267', initialValue = 0, max = null) {
 		const actor = this._resolveActor(actorRef);
 		if (!actor) throw new Error(`Document not found: ${actorRef}`);
 
@@ -32,7 +32,7 @@ export class SheetTracker {
 			id: foundry.utils.randomID(),
 			name: trackerName || 'Resource',
 			value: Math.max(0, parseInt(initialValue) || 0),
-			maxValue: maxValue ? Math.max(1, parseInt(maxValue)) : null,
+			max: max ? Math.max(1, parseInt(max)) : null,
 			color: hexColor || '#f3c267',
 			order: actor.system.resourceTrackers?.length || 0,
 		};
@@ -62,8 +62,8 @@ export class SheetTracker {
 		if (!tracker) throw new Error(`Tracker not found: ${trackerNameOrId}`);
 
 		tracker.value = Math.max(0, parseInt(newValue) || 0);
-		if (tracker.maxValue !== null) {
-			tracker.value = Math.min(tracker.value, tracker.maxValue);
+		if (tracker.max !== null) {
+			tracker.value = Math.min(tracker.value, tracker.max);
 		}
 
 		await actor.update({ 'system.resourceTrackers': trackers });
@@ -88,8 +88,8 @@ export class SheetTracker {
 		if (!tracker) throw new Error(`Tracker not found: ${trackerNameOrId}`);
 
 		tracker.value = Math.max(0, tracker.value + (parseInt(delta) || 0));
-		if (tracker.maxValue !== null) {
-			tracker.value = Math.min(tracker.value, tracker.maxValue);
+		if (tracker.max !== null) {
+			tracker.value = Math.min(tracker.value, tracker.max);
 		}
 
 		await actor.update({ 'system.resourceTrackers': trackers });
@@ -174,8 +174,8 @@ export class SheetTracker {
 			const tracker = trackers.find(t => t.id === update.nameOrId || t.name === update.nameOrId);
 			if (tracker) {
 				tracker.value = Math.max(0, parseInt(update.value) || 0);
-				if (tracker.maxValue !== null) {
-					tracker.value = Math.min(tracker.value, tracker.maxValue);
+				if (tracker.max !== null) {
+					tracker.value = Math.min(tracker.value, tracker.max);
 				}
 				updatedTrackers.push(tracker);
 			}
@@ -323,7 +323,7 @@ export class SheetTracker {
 				id: t.id,
 				name: t.name || 'Resource',
 				value: Math.max(0, parseInt(t.value) || 0),
-				maxValue: t.maxValue ? Math.max(1, parseInt(t.maxValue)) : null,
+				max: t.max ? Math.max(1, parseInt(t.max)) : null,
 				color: t.color || '#f3c267',
 				order: t.order || 0,
 			});
@@ -499,7 +499,7 @@ export class SheetTracker {
 			button.dataset.trackerId = tracker.id;
 			button.dataset.trackerName = tracker.name; // This is needed for CSS hover tooltip
 			button.dataset.trackerColor = tracker.color;
-			button.title = `${tracker.name}: ${tracker.value}${tracker.maxValue ? '/' + tracker.maxValue : ''}`;
+			button.title = `${tracker.name}: ${tracker.value}${tracker.max ? '/' + tracker.max : ''}`;
 			button.style.backgroundColor = tracker.color;
 
 			const valueSpan = document.createElement('span');
@@ -535,7 +535,7 @@ export class SheetTracker {
 			item.innerHTML = `
         <span class="tracker-item-color" style="background-color: ${tracker.color};"></span>
         <span class="tracker-item-name">${tracker.name}</span>
-        <span class="tracker-item-value">${tracker.value}${tracker.maxValue ? '/' + tracker.maxValue : ''}</span>
+        <span class="tracker-item-value">${tracker.value}${tracker.max ? '/' + tracker.max : ''}</span>
         <button class="tracker-item-delete" title="Delete resource">
           <i class="fas fa-times"></i>
         </button>
@@ -557,7 +557,7 @@ export class SheetTracker {
 		const button = this.buttonsContainer?.find(`[data-tracker-id="${trackerId}"]`);
 		if (button?.length) {
 			button.find('.tracker-button-value').text(tracker.value);
-			button.attr('title', `${tracker.name}: ${tracker.value}${tracker.maxValue ? '/' + tracker.maxValue : ''}`);
+			button.attr('title', `${tracker.name}: ${tracker.value}${tracker.max ? '/' + tracker.max : ''}`);
 			button.attr('data-tracker-name', tracker.name); // Update for CSS hover tooltip
 		}
 	}
@@ -571,7 +571,7 @@ export class SheetTracker {
 
 		const listItem = this.listContainer?.find(`[data-tracker-id="${trackerId}"]`);
 		if (listItem?.length) {
-			listItem.find('.tracker-item-value').text(`${tracker.value}${tracker.maxValue ? '/' + tracker.maxValue : ''}`);
+			listItem.find('.tracker-item-value').text(`${tracker.value}${tracker.max ? '/' + tracker.max : ''}`);
 		}
 	}
 
@@ -711,14 +711,14 @@ export class SheetTracker {
 		try {
 			const name = this.sidebarElement.find('.tracker-name-input').val().trim() || 'Resource';
 			const value = Math.max(0, parseInt(this.sidebarElement.find('.tracker-value-input').val()) || 0);
-			const maxValue = parseInt(this.sidebarElement.find('.tracker-max-input').val()) || null;
+			const max = parseInt(this.sidebarElement.find('.tracker-max-input').val()) || null;
 			const color = this.sidebarElement.find('.tracker-color-input').val() || '#f3c267';
 
 			const tracker = {
 				id: foundry.utils.randomID(),
 				name,
 				value,
-				maxValue: maxValue && maxValue > 0 ? Math.max(1, maxValue) : null,
+				max: max && max > 0 ? Math.max(1, max) : null,
 				color,
 				order: this.trackers.size,
 			};
@@ -856,8 +856,8 @@ export class SheetTracker {
 				const oldValue = tracker.value;
 				tracker.value = Math.max(0, tracker.value + delta);
 
-				if (tracker.maxValue !== null) {
-					tracker.value = Math.min(tracker.value, tracker.maxValue);
+				if (tracker.max !== null) {
+					tracker.value = Math.min(tracker.value, tracker.max);
 				}
 
 				if (tracker.value !== oldValue) {
@@ -881,6 +881,7 @@ export class SheetTracker {
 	 * Reset the add tracker form
 	 */
 	_resetForm() {
+		if (!this.sidebarElement) return;
 		this.sidebarElement.find('.tracker-name-input').val('Resource');
 		this.sidebarElement.find('.tracker-value-input').val('0');
 		this.sidebarElement.find('.tracker-max-input').val('');
