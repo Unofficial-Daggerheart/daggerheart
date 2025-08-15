@@ -14,33 +14,19 @@ export class SimpleActor extends Actor {
 		this.system.groups = this.system.groups || {};
 		this.system.attributes = this.system.attributes || {};
 
-		if (!this.system.defenses.armor) this.system.defenses.armor = { value: 0 };
-		if (!this.system.defenses['armor-slots']) this.system.defenses['armor-slots'] = { value: 0 };
+		// Character Only Data
+		this.system.hope = this.system.hope || {};
+		this.system.hope.max = this.system.hope.max || 0;
+		this.system.hope.value = this.system.hope.value || 0;
 
-		if (this.system.health?.value !== undefined) {
-			this.system.health.value = Math.max(0, Math.min(this.system.health.value, this.system.health.max || 0));
-		}
-		if (this.system.stress?.value !== undefined) {
-			this.system.stress.value = Math.max(0, Math.min(this.system.stress.value, this.system.stress.max || 0));
-		}
-		if (this.system.hope?.value !== undefined) {
-			this.system.hope.value = Math.max(0, Math.min(this.system.hope.value, this.system.hope.max || 0));
-		}
+		this.system.defenses = this.system.defenses || {};
+		this.system.defenses.armor = this.system.defenses.armor || { value: 0 };
+		this.system.defenses['armor-slots'] = this.system.defenses['armor-slots'] || { value: 0 };
 
 		this.system.hopeBar = {
 			max: this.system.hope.max || 0,
 			min: 0,
 			value: (this.system.hope.max || 6) - (this.system.hope.value || 0),
-		};
-		this.system.healthBar = {
-			max: this.system.health.max || 6,
-			min: 0,
-			value: (this.system.health.max || 6) - (this.system.health.value || 0),
-		};
-		this.system.stressBar = {
-			max: this.system.stress.max || 6,
-			min: 0,
-			value: (this.system.stress.max || 6) - (this.system.stress.value || 0),
 		};
 		this.system.armor = {
 			max: this.system.defenses.armor.value || 0,
@@ -51,6 +37,25 @@ export class SimpleActor extends Actor {
 			max: this.system.defenses.armor.value || 0,
 			min: 0,
 			value: (this.system.defenses.armor.value || 0) - (this.system.defenses['armor-slots'].value || 0),
+		};
+
+		// Adversary and Character Data
+		this.system.health = this.system.health || {};
+		this.system.health.max = this.system.health.max || 0;
+		this.system.health.value = this.system.health.value || 0;
+		this.system.stress = this.system.stress || {};
+		this.system.stress.max = this.system.stress.max || 0;
+		this.system.stress.value = this.system.stress.value || 0;
+
+		this.system.healthBar = {
+			max: this.system.health.max || 6,
+			min: 0,
+			value: (this.system.health.max || 6) - (this.system.health.value || 0),
+		};
+		this.system.stressBar = {
+			max: this.system.stress.max || 6,
+			min: 0,
+			value: (this.system.stress.max || 6) - (this.system.stress.value || 0),
 		};
 
 		EntitySheetHelper.clampResourceValues(this.system.attributes);

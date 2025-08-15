@@ -211,15 +211,48 @@ Hooks.once('init', async function () {
 	CONFIG.Combat.fallbackTurnMarker = 'systems/daggerheart-unofficial/assets/spotlight.webp';
 
 	CONFIG.Actor.trackableAttributes = CONFIG.Actor.trackableAttributes || {};
-	for (const t of ['character', 'npc', 'companion', 'environment']) {
-		CONFIG.Actor.trackableAttributes[t] = CONFIG.Actor.trackableAttributes[t] || {};
-		const bar = CONFIG.Actor.trackableAttributes[t].bar || [];
-		const value = CONFIG.Actor.trackableAttributes[t].value || [];
-		CONFIG.Actor.trackableAttributes[t].bar = Array.from(
-			new Set([...bar, 'hope', 'armor', 'health', 'stress', 'hopeBar', 'armorBar', 'healthBar', 'stressBar'])
-		);
-		CONFIG.Actor.trackableAttributes[t].value = Array.from(new Set([...value]));
-	}
+
+	CONFIG.Actor.trackableAttributes['character'] = CONFIG.Actor.trackableAttributes['character'] || {};
+	CONFIG.Actor.trackableAttributes['character'].bar = Array.from(
+		new Set([
+			...(CONFIG.Actor.trackableAttributes['character'].bar || []),
+			'hope',
+			'armor',
+			'health',
+			'stress',
+			'hopeBar',
+			'armorBar',
+			'healthBar',
+			'stressBar',
+		])
+	);
+	CONFIG.Actor.trackableAttributes['character'].value = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['character'].value || [])])
+	);
+
+	CONFIG.Actor.trackableAttributes['companion'] = CONFIG.Actor.trackableAttributes['companion'] || {};
+	CONFIG.Actor.trackableAttributes['companion'].bar = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['companion'].bar || []), 'stress', 'stressBar'])
+	);
+	CONFIG.Actor.trackableAttributes['companion'].value = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['companion'].value || [])])
+	);
+
+	CONFIG.Actor.trackableAttributes['npc'] = CONFIG.Actor.trackableAttributes['npc'] || {};
+	CONFIG.Actor.trackableAttributes['npc'].bar = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['npc'].bar || []), 'health', 'stress', 'healthBar', 'stressBar'])
+	);
+	CONFIG.Actor.trackableAttributes['npc'].value = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['npc'].value || [])])
+	);
+
+	CONFIG.Actor.trackableAttributes['environment'] = CONFIG.Actor.trackableAttributes['environment'] || {};
+	CONFIG.Actor.trackableAttributes['environment'].bar = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['environment'].bar || [])])
+	);
+	CONFIG.Actor.trackableAttributes['environment'].value = Array.from(
+		new Set([...(CONFIG.Actor.trackableAttributes['environment'].value || [])])
+	);
 
 	// Register custom canvas classes for range measurement
 	CONFIG.MeasuredTemplate.objectClass = DaggerheartMeasuredTemplate;
@@ -366,8 +399,8 @@ Hooks.once('init', async function () {
 		config: true,
 		type: String,
 		choices: {
-			'above': 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionAbove',
-			'below': 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionBelow'
+			above: 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionAbove',
+			below: 'DAGGERHEART.SETTINGS.HoverDistance.tooltipPositionBelow',
 		},
 		default: 'above',
 	});
