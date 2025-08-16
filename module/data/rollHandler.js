@@ -425,6 +425,8 @@ function _addDualityRollButtonHandlers(html) {
 	});
 }
 
+
+
 export function _ensureDaggerheartColorsets() {
 	// Use the dynamic dice customization system
 	// Dice customization now uses preset-based approach - no initialization needed
