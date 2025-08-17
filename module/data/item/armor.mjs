@@ -24,10 +24,9 @@ export default class ArmorData extends ItemBase.mixin(
 			equipped: new BooleanField({ required: true, initial: false }),
 			baseThresholds: new SchemaField({
 				major: new NumberField({
-					min: 0,
 					integer: true,
 					required: true,
-					positive: true,
+					positive: false,
 					initial: 4,
 				}),
 				severe: new NumberField({

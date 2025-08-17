@@ -1,7 +1,7 @@
 import { ModifierManager } from './modifierManager.js';
 
 export class DaggerheartMigrations {
-	static CURRENT_VERSION = '1.2.6';
+	static CURRENT_VERSION = '1.2.7';
 
 	static async migrateDocument(document) {
 		let hasChanged = false;
@@ -122,6 +122,30 @@ export class DaggerheartMigrations {
 					}
 				} catch (error) {
 					console.error(`❌ Error migrating token resource trackers "${document.name}":`, error);
+				}
+			}
+
+			if (this.compareVersions(currentVersion, '1.2.7') < 0 && document.documentName === 'Actor') {
+				try {
+					const ageMigration = this._migrateAgeField(document);
+					if (ageMigration) {
+						Object.assign(updateData, ageMigration);
+						hasChanged = true;
+					}
+				} catch (error) {
+					console.error(`❌ Error migrating age field for "${document.name}":`, error);
+				}
+			}
+
+			if (this.compareVersions(currentVersion, '1.2.7') < 0 && document.documentName === 'Item') {
+				try {
+					const baseThresholdsMigration = this._migrateBaseThresholdsField(document);
+					if (baseThresholdsMigration) {
+						Object.assign(updateData, baseThresholdsMigration);
+						hasChanged = true;
+					}
+				} catch (error) {
+					console.error(`❌ Error migrating baseThresholds field for "${document.name}":`, error);
 				}
 			}
 
@@ -859,5 +883,39 @@ export class DaggerheartMigrations {
 	 */
 	static _generateModifierId() {
 		return `mod_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+	}
+
+	static _migrateAgeField(document) {
+		let needsUpdate = false;
+		const updateData = {};
+
+		if (document.type === 'character' && document.system?.age !== undefined) {
+			const currentAge = document.system.age;
+			
+			if (typeof currentAge === 'number') {
+				updateData['system.age'] = currentAge.toString();
+				needsUpdate = true;
+				console.log(`🔄 Converting age from number to string for character "${document.name}" (${currentAge} -> "${currentAge}")`);
+			}
+		}
+
+		return needsUpdate ? updateData : null;
+	}
+
+	static _migrateBaseThresholdsField(document) {
+		let needsUpdate = false;
+		const updateData = {};
+
+		if (document.type === 'armor' && document.system?.baseThresholds?.major !== undefined) {
+			const currentMajor = document.system.baseThresholds.major;
+			
+			if (currentMajor < 0) {
+				updateData['system.baseThresholds.major'] = 0;
+				needsUpdate = true;
+				console.log(`🔧 Fixing negative major threshold for armor "${document.name}" (${currentMajor} -> 0)`);
+			}
+		}
+
+		return needsUpdate ? updateData : null;
 	}
 }
