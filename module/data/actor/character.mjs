@@ -48,12 +48,10 @@ export default class CharacterData extends ActorBase.mixin(
 			hope: new ValueField({ min: 0, max: 6, value: 2 }),
 
 			// TODO Combine these with the Description
-			age: new NumberField({
-				min: 0,
-				integer: true,
+			age: new StringField({
+				blank: true,
 				required: true,
-				positive: false,
-				initial: 6,
+				initial: "6",
 			}),
 			pronouns: new StringField({
 				blank: true,
