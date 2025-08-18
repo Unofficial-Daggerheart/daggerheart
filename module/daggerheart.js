@@ -37,7 +37,7 @@ import { EquipmentSystem } from './helpers/equipmentSystem.js';
 import { SpotlightInitiativeTracker, DaggerheartCombat } from './applications/spotlight-initiative.js';
 
 // Dice Customization System
-import { DiceAppearanceSettings, getDefaultDiceAppearanceSettings } from './data/settings/DiceAppearanceSettings.mjs';
+import { getDefaultDiceAppearanceSettings } from './data/settings/DiceAppearanceSettings.mjs';
 import { DiceCustomizationHelper } from './helpers/diceCustomization.mjs';
 import { DiceCustomizationSettings } from './applications/DiceCustomizationSettings.mjs';
 import { RangeMeasurementSettings } from './applications/RangeMeasurementSettings.mjs';
@@ -115,22 +115,6 @@ Hooks.once('init', async function () {
 	// Client-scoped settings ensure each user has their own dice appearance preferences
 	console.debug('Daggerheart | Dice customization using client-scoped preset-based system');
 
-	CONFIG.statusEffects.push({
-		id: 'hidden',
-		label: 'Hidden',
-		icon: 'icons/svg/invisible.svg',
-	});
-	CONFIG.statusEffects.push({
-		id: 'restrained',
-		label: 'Restrained',
-		icon: 'icons/svg/padlock.svg',
-	});
-	CONFIG.statusEffects.push({
-		id: 'vulnerable',
-		label: 'Vulnerable',
-		icon: 'icons/svg/stoned.svg',
-	});
-
 	game.daggerheart = {
 		SimpleActor,
 		createDaggerheartMacro,
@@ -179,37 +163,37 @@ Hooks.once('init', async function () {
 
 	globalThis.daggerheart.EntitySheetHelper = EntitySheetHelper;
 
-	CONFIG.Actor.dataModels = actorData.config;
-	CONFIG.Actor.documentClass = SimpleActor;
-	CONFIG.Actor.typeLabels = {
-		character: 'ACTOR.TypeCharacter',
-		npc: 'ACTOR.TypeNpc',
-		companion: 'ACTOR.TypeCompanion',
-		environment: 'ACTOR.TypeEnvironment',
-	};
-
-	CONFIG.Item.dataModels = itemData.config;
-	CONFIG.Item.documentClass = SimpleItem;
-	CONFIG.Item.typeLabels = {
-		item: 'ITEM.TypeItem',
-		inventory: 'ITEM.TypeInventory',
-		worn: 'ITEM.TypeWorn',
-		domain: 'ITEM.TypeDomain',
-		vault: 'ITEM.Vault',
-		ancestry: 'ITEM.TypeAncestry',
-		community: 'ITEM.TypeCommunity',
-		class: 'ITEM.TypeClass',
-		subclass: 'ITEM.TypeSubclass',
-		weapon: 'ITEM.TypeWeapon',
-		armor: 'ITEM.TypeArmor',
-		passive: 'ITEM.TypePassive',
-	};
-
-	CONFIG.Token.documentClass = SimpleTokenDocument;
-	CONFIG.Token.objectClass = SimpleToken;
+	// Setup combat information
 	CONFIG.Combat.documentClass = DaggerheartCombat;
 	CONFIG.Combat.fallbackTurnMarker = 'systems/daggerheart-unofficial/assets/spotlight.webp';
 
+	// Register custom canvas classes for range measurement
+	CONFIG.MeasuredTemplate.objectClass = DaggerheartMeasuredTemplate;
+	CONFIG.Canvas.rulerClass = DaggerheartRuler;
+
+	// Setup token information
+	CONFIG.Token.documentClass = SimpleTokenDocument;
+	CONFIG.Token.objectClass = SimpleToken;
+	CONFIG.Token.rulerClass = DaggerheartTokenRuler;
+
+	// Setup status effects for tokens and actors
+	CONFIG.statusEffects.push({
+		id: 'hidden',
+		label: 'Hidden',
+		icon: 'icons/svg/invisible.svg',
+	});
+	CONFIG.statusEffects.push({
+		id: 'restrained',
+		label: 'Restrained',
+		icon: 'icons/svg/padlock.svg',
+	});
+	CONFIG.statusEffects.push({
+		id: 'vulnerable',
+		label: 'Vulnerable',
+		icon: 'icons/svg/stoned.svg',
+	});
+
+	// Setup actor token, tackable attributes for token resource bars
 	CONFIG.Actor.trackableAttributes = CONFIG.Actor.trackableAttributes || {};
 
 	CONFIG.Actor.trackableAttributes['character'] = CONFIG.Actor.trackableAttributes['character'] || {};
@@ -254,10 +238,15 @@ Hooks.once('init', async function () {
 		new Set([...(CONFIG.Actor.trackableAttributes['environment'].value || [])])
 	);
 
-	// Register custom canvas classes for range measurement
-	CONFIG.MeasuredTemplate.objectClass = DaggerheartMeasuredTemplate;
-	CONFIG.Canvas.rulerClass = DaggerheartRuler;
-	CONFIG.Token.rulerClass = DaggerheartTokenRuler;
+	// Setup actor data, sheets and documents
+	CONFIG.Actor.documentClass = SimpleActor;
+	CONFIG.Actor.dataModels = actorData.config;
+	CONFIG.Actor.typeLabels = {
+		character: 'ACTOR.TypeCharacter',
+		npc: 'ACTOR.TypeNpc',
+		companion: 'ACTOR.TypeCompanion',
+		environment: 'ACTOR.TypeEnvironment',
+	};
 
 	foundry.documents.collections.Actors.unregisterSheet('core', foundry.applications.sheets.ActorSheetV2);
 	foundry.documents.collections.Actors.registerSheet('daggerheart-unofficial', SimpleActorSheet, {
@@ -280,6 +269,25 @@ Hooks.once('init', async function () {
 		makeDefault: true,
 		label: 'SHEET.Actor.environment',
 	});
+
+	// Setup item data, sheets and documents
+	CONFIG.Item.dataModels = itemData.config;
+	CONFIG.Item.documentClass = SimpleItem;
+	CONFIG.Item.typeLabels = {
+		item: 'ITEM.TypeItem',
+		inventory: 'ITEM.TypeInventory',
+		worn: 'ITEM.TypeWorn',
+		domain: 'ITEM.TypeDomain',
+		vault: 'ITEM.Vault',
+		ancestry: 'ITEM.TypeAncestry',
+		community: 'ITEM.TypeCommunity',
+		class: 'ITEM.TypeClass',
+		subclass: 'ITEM.TypeSubclass',
+		weapon: 'ITEM.TypeWeapon',
+		armor: 'ITEM.TypeArmor',
+		passive: 'ITEM.TypePassive',
+	};
+
 	foundry.documents.collections.Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
 	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleItemSheet, {
 		types: ['item', 'inventory', 'worn', 'domain', 'vault', 'ancestry', 'community', 'class', 'subclass', 'passive'],
@@ -297,6 +305,7 @@ Hooks.once('init', async function () {
 		label: 'SHEET.Item.armor',
 	});
 
+	// Setup settings - system configuration and default values
 	game.settings.register('daggerheart-unofficial', 'counterValue', {
 		name: 'Counter Value',
 		hint: 'The current value of the counter',
@@ -351,7 +360,7 @@ Hooks.once('init', async function () {
 		default: { count: 8, smoke: true, icon: 'fa-duotone fa-skull', scale: 1 },
 	});
 
-	// Register range measurement settings
+	// Setup settings - range measurement settings
 	game.settings.register('daggerheart-unofficial', 'rangeMeasurementEnabled', {
 		name: 'DAGGERHEART.SETTINGS.RangeMeasurement.enabled',
 		hint: "Enable narrative range measurement display (scenes using 'mi' or 'km' as units are exempt)",
@@ -455,7 +464,7 @@ Hooks.once('init', async function () {
 		restricted: true,
 	});
 
-	// Simple Adversary Sheets setting
+	// Setup settings - Simple Adversary Sheets
 	game.settings.register('daggerheart-unofficial', 'simpleAdversarySheets', {
 		name: 'SETTINGS.SimpleAdversarySheetsN',
 		hint: 'SETTINGS.SimpleAdversarySheetsL',
@@ -465,7 +474,7 @@ Hooks.once('init', async function () {
 		default: false,
 	});
 
-	// Dice Appearance Customization Settings
+	// Setup settings - Dice Appearance Customization
 	game.settings.register('daggerheart-unofficial', 'diceAppearance', {
 		name: 'DAGGERHEART.SETTINGS.DiceCustomization.name',
 		hint: 'DAGGERHEART.SETTINGS.DiceCustomization.hint',
@@ -501,7 +510,7 @@ Hooks.once('init', async function () {
 		},
 	});
 
-	// Register dice customization settings menu
+	// Setup menu - Register dice customization settings
 	game.settings.registerMenu('daggerheart-unofficial', 'diceCustomizationMenu', {
 		name: 'DAGGERHEART.SETTINGS.DiceCustomization.menuName',
 		label: 'DAGGERHEART.SETTINGS.DiceCustomization.menuLabel',
@@ -510,7 +519,7 @@ Hooks.once('init', async function () {
 		type: DiceCustomizationSettings,
 	});
 
-	// Register range measurement settings menu
+	// Setup menu - Register range measurement settings
 	game.settings.registerMenu('daggerheart-unofficial', 'rangeMeasurementMenu', {
 		name: 'DAGGERHEART.SETTINGS.RangeMeasurement.title',
 		label: 'DAGGERHEART.SETTINGS.RangeMeasurement.menuLabel',
@@ -520,6 +529,7 @@ Hooks.once('init', async function () {
 		restricted: true,
 	});
 
+	// Setup menu - Fear particles settings
 	game.settings.registerMenu('daggerheart-unofficial', 'fearParticleMenu', {
 		name: 'Fear Particle Settings',
 		label: 'Fear Particles',
@@ -528,11 +538,11 @@ Hooks.once('init', async function () {
 		type: FearParticleSettings,
 	});
 
+	// Setup handlebar helpers and templates
 	Handlebars.registerHelper('slugify', function (value) {
 		return value.slugify({ strict: true });
 	});
 
-	// Register template enricher for chat integration
 	CONFIG.TextEditor.enrichers.push({
 		pattern: /@Template\[([^\]]+)\]/g,
 		enricher: DaggerheartTemplateEnricher,

@@ -1,6 +1,6 @@
 {
 	"id": "daggerheart-unofficial",
-	"version": "3.0.9",
+	"version": "3.0.10",
 	"title": "Daggerheart Unofficial",
 	"url": "",
 	"description": "Unofficial Daggerheart Game System",
@@ -66,7 +66,20 @@
 			"worn": { "htmlFields": ["description"] }
 		}
 	},
+	"relationships": {
+		"recommends": [
+			{
+				"id": "daggerheart-unofficial-srd",
+				"type": "module",
+				"reason": "Provides all Daggerheart materials, cards, and items",
+				"manifest": "https://github.com/unofficial-daggerheart/daggerheart-srd/releases/latest/download/module.json",
+				"compatibility": {
+					"minimum": "0.1.1"
+				}
+			}
+		]
+	},
 	"manifest": "https://raw.githubusercontent.com/unofficial-daggerheart/daggerheart/master/system.json",
-	"download": "https://github.com/unofficial-daggerheart/daggerheart/archive/refs/tags/v3.0.9.zip",
+	"download": "https://github.com/unofficial-daggerheart/daggerheart/archive/refs/tags/v3.0.10.zip",
 	"background": "https://raw.githubusercontent.com/Unofficial-Daggerheart/daggerheart/refs/tags/v2.12.9/assets/branding/coverart.webp"
 }
