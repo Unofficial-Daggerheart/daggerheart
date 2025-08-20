@@ -1,0 +1,35 @@
+/* ============================================
+   DAGGERHEART SYSTEM STYLES
+   ============================================
+   Organized Architecture:
+   1. Foundation - Variables, resets, base styles
+   2. Layout - General sheet and window layouts
+   3. Components - Reusable UI components
+   4. Features - Specific functionality modules
+   ============================================ */
+
+/* Foundation Layer */
+@use 'v1/foundation';
+@use 'v1/global-design-system';
+@use 'v1/base';
+
+/* Layout Layer */
+@use 'v1/layout';
+
+/* Components Layer */
+@use 'v1/components';
+
+/* Feature Layer */
+@use 'v1/header';
+@use 'v1/character';
+@use 'v1/environment';
+@use 'v1/dialogs';
+@use 'v1/chat';
+@use 'v1/rest';
+@use 'v1/tabs';
+@use 'v1/editor';
+@use 'v1/attribute-popups';
+@use 'v1/sheet-tracker';
+@use 'v1/item-sheet';
+
+// @use 'v1/testing-layouts';

@@ -4,7 +4,7 @@
    ============================================
    Organized Architecture:
    1. Foundation - Variables, resets, base styles
-   2. Layout - General sheet and window layouts  
+   2. Layout - General sheet and window layouts
    3. Components - Reusable UI components
    4. Features - Specific functionality modules
    ============================================ */
@@ -4427,8 +4427,8 @@ body.game .app textarea {
 	border-radius: 15px;
 	backdrop-filter: blur(3px);
 	/*.resource-label-controls label {
-    text-shadow: 0 0 4px rgba(0, 0, 0, 0.55), 0 0 8px rgba(0, 0, 0, 0.45);
-  }*/
+     text-shadow: 0 0 4px rgba(0, 0, 0, 0.55), 0 0 8px rgba(0, 0, 0, 0.45);
+   }*/
 }
 .header-resources-row .resource {
 	min-width: 120px;
@@ -7195,9 +7195,9 @@ input.trait-effects.resize-ta {
 
 .daggerheart-dialog.daggerheart-roll-dialog {
 	/* ====================================
-     DICE GRID SYSTEM STYLES
-     New advantage/disadvantage dice system
-     ==================================== */
+      DICE GRID SYSTEM STYLES
+      New advantage/disadvantage dice system
+      ==================================== */
 	/* Font Awesome dice icon styling */
 	/* Advantage/Disadvantage single grid system */
 }
@@ -12558,84 +12558,4 @@ button.weapon-locked:hover {
 		border: none;
 		border-radius: 0;
 	}
-}
-.window-app .window-header a {
-	flex: 0 0 30px;
-	overflow: hidden;
-	padding: 0 5px;
-	line-height: 0rem;
-	font-size: 0;
-	cursor: pointer;
-}
-.window-app .window-header a i {
-	font-size: 14px;
-}
-
-.actor .window-content,
-.item .window-content,
-.npc .window-content {
-	background: transparent;
-	background-color: transparent;
-	color: #f0f0e0;
-	border: 1px solid rgba(255, 255, 255, 0.2392156863);
-	border-radius: 0 0 10px 10px;
-	border-top: none;
-	position: relative;
-}
-
-.item .window-content {
-	padding: 1em 2em;
-}
-
-.actor,
-.npc {
-	background: transparent;
-}
-
-.daggerheart .actor input[type='text'],
-.daggerheart .actor input[type='number'],
-.daggerheart .actor input[type='password'],
-.daggerheart .actor input[type='date'],
-.daggerheart .actor input[type='time'],
-.daggerheart .actor input[type='search'] {
-	color: #f0f0e0;
-}
-.daggerheart .npc input[type='text'],
-.daggerheart .npc input[type='number'],
-.daggerheart .npc input[type='password'],
-.daggerheart .npc input[type='date'],
-.daggerheart .npc input[type='time'],
-.daggerheart .npc input[type='search'] {
-	color: #f0f0e0;
-}
-
-.item .sheet-header .profile-img {
-	flex: 0 0 100px;
-	margin-right: 10px;
-	object-fit: cover;
-	width: 100%;
-	height: 165px;
-	border: 2px solid var(--dh-color-gold);
-	border-style: double;
-	border-radius: 0px 10px;
-}
-.item .sheet-body .tab {
-	height: 100%;
-	overflow: visible;
-	margin: 0px;
-	padding: 0px;
-	width: 100%;
-	padding-top: 0em;
-	padding-bottom: 1.25em;
-	border-top: 1px solid var(--dh-color-gold);
-}
-.item .flexcol {
-	position: relative;
-}
-
-.companion-weapon-section {
-	flex: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
