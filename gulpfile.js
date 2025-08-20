@@ -8,7 +8,7 @@ const { spawn } = require('child_process');
 
 const SIMPLE_SASS = ['styles/**/*.scss'];
 function compileSass() {
-	return gulp.src('./styles/simple.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('./styles'));
+	return gulp.src('./styles/daggerheart.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('./styles'));
 }
 
 const DOCS_SASS = ['documentation/sass/**/*.scss'];
