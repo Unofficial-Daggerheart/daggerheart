@@ -15,7 +15,7 @@
 	}
 }
 
-.sheet-tracker-sidebar {
+.daggerheart .sheet-tracker-sidebar {
 	position: absolute;
 	left: 100%;
 	top: 15%;
@@ -32,7 +32,7 @@
 }
 
 /* Main tracker button */
-.tracker-main-button {
+.daggerheart .tracker-main-button {
 	width: 45px;
 	height: 36px;
 	border-radius: 0% 25% 25% 0%;
@@ -61,7 +61,7 @@
 }
 
 /* Container for individual tracker buttons */
-.tracker-buttons-container {
+.daggerheart .tracker-buttons-container {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
@@ -70,7 +70,7 @@
 }
 
 /* Individual tracker buttons */
-.tracker-button {
+.daggerheart .tracker-button {
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
@@ -132,7 +132,7 @@
 }
 
 /* Manager panel - Using global popup styling */
-.tracker-manager-panel {
+.daggerheart .tracker-manager-panel {
 	position: absolute;
 	left: 120%;
 	top: 0;
@@ -162,7 +162,7 @@
 }
 
 /* Manager header - Using global popup header styling */
-.tracker-manager-header {
+.daggerheart .tracker-manager-header {
 	background: rgba(11, 10, 19, 0.5);
 	border-bottom: 1px solid var(--dh-color-gold);
 	padding: var(--dh-space-md) var(--dh-space-lg);
@@ -216,7 +216,7 @@
 }
 
 /* Manager content - Using global content layout */
-.tracker-manager-content {
+.daggerheart .tracker-manager-content {
 	padding: var(--dh-space-md) var(--dh-space-lg);
 	display: flex;
 	flex-direction: column;
@@ -227,12 +227,12 @@
 	flex: 1;
 }
 
-.tracker-value-input {
+.daggerheart .tracker-value-input {
 	max-width: 40px;
 }
 
 /* Add tracker form - Using global section styling */
-.tracker-add-form {
+.daggerheart .tracker-add-form {
 	background: var(--dh-bg-section);
 	padding: var(--dh-space-sm) var(--dh-space-lg);
 	border-radius: var(--dh-radius-xl);
@@ -395,7 +395,7 @@
 }
 
 /* Tracker list */
-.tracker-list {
+.daggerheart .tracker-list {
 	background: rgba(0, 0, 0, 0.2);
 	padding: 0.5em 1rem;
 	border-radius: 10px;
@@ -424,7 +424,7 @@
 }
 
 /* Tracker list item */
-.tracker-list-item {
+.daggerheart .tracker-list-item {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -506,7 +506,7 @@
 	}
 }
 
-.tracker-button {
+.daggerheart .tracker-button {
 	animation: fadeIn 0.3s ease-out;
 }
 
@@ -521,13 +521,13 @@
 /* Sidebar Navigation Buttons                */
 /* ----------------------------------------- */
 
-.sidebar-nav-buttons {
+.daggerheart .sidebar-nav-buttons {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
 }
 
-.nav-button {
+.daggerheart .nav-button {
 	width: 45px;
 	height: 36px;
 	border-radius: 0% 25% 25% 0%;
@@ -600,7 +600,7 @@
 /* Tooltip for tracker main button            */
 /* ----------------------------------------- */
 
-.tracker-main-button::after {
+.daggerheart .tracker-main-button::after {
 	content: attr(title);
 	position: absolute;
 	left: 100%;
@@ -623,7 +623,7 @@
 	z-index: 1000;
 }
 
-.tracker-main-button:hover::after {
+.daggerheart .tracker-main-button:hover::after {
 	opacity: 1;
 	visibility: visible;
 	margin-left: 12px;
@@ -633,7 +633,7 @@
 /* Simple Tracker Bubbles                   */
 /* ----------------------------------------- */
 
-.tracker-bubbles {
+.daggerheart .tracker-bubbles {
 	position: absolute;
 	top: -90px; // Move up to cover the button above
 	right: 5px;
@@ -648,14 +648,14 @@
 }
 
 // Special positioning for domain ability buttons
-.domain-ability-button .tracker-bubbles {
+.daggerheart .domain-ability-button .tracker-bubbles {
 	top: -10px;
 	right: -10px;
 	flex-direction: row;
 	gap: 3px;
 }
 
-.tracker-bubble {
+.daggerheart .tracker-bubble {
 	min-width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -680,7 +680,7 @@
 /* Tracker Notification Bubbles             */
 /* ----------------------------------------- */
 
-.tracker-notification-bubbles {
+.daggerheart .tracker-notification-bubbles {
 	position: absolute;
 	top: -12px;
 	right: -12px;
@@ -691,7 +691,7 @@
 	pointer-events: none;
 }
 
-.tracker-notification-bubble {
+.daggerheart .tracker-notification-bubble {
 	min-width: 24px;
 	height: 24px;
 	border-radius: 50%;
@@ -728,7 +728,7 @@
 /* Domain Ability Sidebar                   */
 /* ----------------------------------------- */
 
-.domain-abilities-sidebar {
+.daggerheart .domain-abilities-sidebar {
 	.domain-ability-button {
 		position: relative;
 		display: inline-block;
@@ -740,7 +740,7 @@
 /* Tracker Notification Bubbles             */
 /* ----------------------------------------- */
 
-.tracker-notification-bubbles {
+.daggerheart .tracker-notification-bubbles {
 	position: absolute;
 	top: -12px;
 	right: -12px;
@@ -751,7 +751,7 @@
 	pointer-events: none;
 }
 
-.tracker-notification-bubble {
+.daggerheart .tracker-notification-bubble {
 	min-width: 24px;
 	height: 24px;
 	border-radius: 50%;
@@ -789,7 +789,7 @@
 /* Tracker Notification Bubble Tooltips     */
 /* ----------------------------------------- */
 
-.tracker-notification-bubble {
+.daggerheart .tracker-notification-bubble {
 	// Custom tooltip similar to sheet tracker
 	&::after {
 		content: attr(title);
