@@ -1,7 +1,7 @@
 /* Tabs */
 // Scope sheet-tabs to only character, adversary, companion, and item sheets
 .daggerheart.sheet.actor:not(.npc),  // Character sheets
-.daggerheart.sheet.actor.npc,        // NPC/Adversary sheets  
+.daggerheart.sheet.actor.npc,        // NPC/Adversary sheets
 .daggerheart.sheet.companion,        // Companion sheets
 .daggerheart.item-sheet-card {
 	// Item sheets
@@ -65,7 +65,7 @@
 	}
 }
 
-.nav-gem {
+.daggerheart .nav-gem {
 	width: 20px;
 	height: 35px;
 	background: url('https://i.imgur.com/VSTKJWt.png') center/contain no-repeat;
@@ -94,12 +94,12 @@
 	}
 }
 
-.item nav.sheet-tabs.tabs {
+.daggerheart .item nav.sheet-tabs.tabs {
 	margin-top: 0.1em;
 }
 
 /* Tab categories and titles */
-.tab-title {
+.daggerheart .tab-title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -113,7 +113,7 @@
 	margin-bottom: 1.5em;
 }
 
-.tab-category {
+.daggerheart .tab-category {
 	display: flex;
 	border-bottom: 1px solid var(--dh-color-gold-dark);
 	font-size: var(--font-size-14);

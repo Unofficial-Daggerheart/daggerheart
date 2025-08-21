@@ -1,4 +1,4 @@
-.editor-content * {
+.daggerheart .editor-content * {
 	-webkit-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
@@ -62,7 +62,7 @@
 	}
 }
 
-.prosemirror {
+.daggerheart .prosemirror {
 	menu {
 		button {
 			color: var(--dh-color-off-white);

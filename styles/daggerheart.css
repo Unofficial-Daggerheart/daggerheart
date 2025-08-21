@@ -1216,7 +1216,7 @@ input[type='search']:focus {
 }
 .daggerheart .editor {
 	border: 1px solid #6d6795;
-	border-radius: 25px;
+	border-radius: 16px;
 	padding: 1em;
 }
 .daggerheart .window-content {
@@ -1277,11 +1277,11 @@ input[type='search']:focus {
 }
 
 /* Window Content Styling */
-.actor .window-content,
-.item .window-content,
-.npc .window-content,
-.companion .window-content,
-.environment .window-content {
+.daggerheart.actor .window-content,
+.daggerheart.item .window-content,
+.daggerheart.npc .window-content,
+.daggerheart.companion .window-content,
+.daggerheart.environment .window-content {
 	background: transparent;
 	background-color: transparent;
 	color: #f0f0e0;
@@ -1291,16 +1291,16 @@ input[type='search']:focus {
 	position: relative;
 }
 
-.item .window-content {
+.daggerheart.item .window-content {
 	padding: 1em 2em;
 }
 
 /* Window Header Styling */
-.actor .window-header,
-.npc .window-header,
-.companion .window-header,
-.item .window-header,
-.environment .window-header {
+.daggerheart.actor .window-header,
+.daggerheart.npc .window-header,
+.daggerheart.companion .window-header,
+.daggerheart.item .window-header,
+.daggerheart.environment .window-header {
 	background: transparent;
 	border: none;
 	box-shadow: none;
@@ -1315,68 +1315,62 @@ input[type='search']:focus {
 }
 
 /* Sheet Backgrounds */
-.actor {
+.daggerheart.actor {
 	background: transparent;
 }
 
-.npc {
+.daggerheart.npc {
 	background: transparent;
 }
-.npc .header-resources-row {
+.daggerheart.npc .header-resources-row {
 	margin-left: 0;
 	display: flex;
 	justify-content: space-evenly;
 }
-.npc .header-right {
+.daggerheart.npc .header-right {
 	height: 100%;
 }
-.npc .header-left .profile-img {
+.daggerheart.npc .header-left .profile-img {
 	width: 200px;
 	height: 250px;
 }
 
-.companion {
+.daggerheart.companion {
 	background: transparent;
 }
 
-.environment {
+.daggerheart.environment {
 	background: transparent;
 }
 
-.sheet.actor,
-.sheet.npc,
-.sheet.companion,
-.sheet.item,
-.sheet.environment {
+.daggerheart.sheet.actor,
+.daggerheart.sheet.npc,
+.daggerheart.sheet.companion,
+.daggerheart.sheet.item,
+.daggerheart.sheet.environment {
 	background: rgba(11, 10, 19, 0.8392156863);
 	backdrop-filter: blur(5px);
 }
 
 /* Input Styling for Sheets */
-.daggerheart .actor input[type='text'],
-.daggerheart .actor input[type='number'],
-.daggerheart .actor input[type='password'],
-.daggerheart .actor input[type='date'],
-.daggerheart .actor input[type='time'],
-.daggerheart .actor input[type='search'] {
-	color: #f0f0e0;
-}
-
-.daggerheart .npc input[type='text'],
-.daggerheart .npc input[type='number'],
-.daggerheart .npc input[type='password'],
-.daggerheart .npc input[type='date'],
-.daggerheart .npc input[type='time'],
-.daggerheart .npc input[type='search'] {
-	color: #f0f0e0;
-}
-
-.daggerheart .companion input[type='text'],
-.daggerheart .companion input[type='number'],
-.daggerheart .companion input[type='password'],
-.daggerheart .companion input[type='date'],
-.daggerheart .companion input[type='time'],
-.daggerheart .companion input[type='search'] {
+.daggerheart.npc input[type='text'],
+.daggerheart.npc input[type='number'],
+.daggerheart.npc input[type='password'],
+.daggerheart.npc input[type='date'],
+.daggerheart.npc input[type='time'],
+.daggerheart.npc input[type='search'],
+.daggerheart.actor input[type='text'],
+.daggerheart.actor input[type='number'],
+.daggerheart.actor input[type='password'],
+.daggerheart.actor input[type='date'],
+.daggerheart.actor input[type='time'],
+.daggerheart.actor input[type='search'],
+.daggerheart.companion input[type='text'],
+.daggerheart.companion input[type='number'],
+.daggerheart.companion input[type='password'],
+.daggerheart.companion input[type='date'],
+.daggerheart.companion input[type='time'],
+.daggerheart.companion input[type='search'] {
 	color: #f0f0e0;
 }
 
@@ -1425,7 +1419,7 @@ input[type='search']:focus {
 }
 
 /* Item Sheet Specific Layouts */
-.item-bg {
+.daggerheart .item-bg {
 	position: absolute;
 	top: -2.25vh;
 	left: 0;
@@ -1451,7 +1445,7 @@ input[type='search']:focus {
 	border-radius: 10px;
 }
 
-.item .sheet-body .tab {
+.daggerheart.item .sheet-body .tab {
 	height: 100%;
 	overflow: visible;
 	margin: 0px;
@@ -1462,11 +1456,11 @@ input[type='search']:focus {
 	border-top: 1px solid var(--dh-color-gold);
 }
 
-.item .flexcol {
+.daggerheart.item .flexcol {
 	position: relative;
 }
 
-.item .sheet-header {
+.daggerheart.item .sheet-header {
 	position: relative;
 	z-index: 1;
 }
@@ -4778,7 +4772,7 @@ body.game .app textarea {
 
 /* Feature Layer */
 /* Header */
-.sheet-header {
+.daggerheart .sheet-header {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -4790,15 +4784,15 @@ body.game .app textarea {
 	max-height: 31em;
 }
 
-.companion .sheet-header {
+.daggerheart .companion .sheet-header {
 	max-height: 22em;
 }
 
-.npc .sheet-header {
+.daggerheart .npc .sheet-header {
 	max-height: 22em;
 }
 
-.header-top-container {
+.daggerheart .header-top-container {
 	display: flex;
 	width: 100%;
 	overflow: visible;
@@ -4807,7 +4801,7 @@ body.game .app textarea {
 	margin-bottom: 0.5em;
 }
 
-.charlevel {
+.daggerheart .charlevel {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -4817,7 +4811,7 @@ body.game .app textarea {
 	padding: 5px 25px;
 	border-radius: 5px;
 }
-.charlevel input {
+.daggerheart .charlevel input {
 	color: var(--dh-color-gold-dark);
 	text-align: center;
 	font-size: 1.5rem;
@@ -4827,7 +4821,7 @@ body.game .app textarea {
 	border: none;
 	background: transparent;
 }
-.charlevel a {
+.daggerheart .charlevel a {
 	padding: 0px;
 	height: min-content;
 	font-size: 11px;
@@ -4835,7 +4829,7 @@ body.game .app textarea {
 	opacity: 0.6;
 }
 
-.header-main-container {
+.daggerheart .header-main-container {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -4843,8 +4837,7 @@ body.game .app textarea {
 	position: relative;
 	flex-wrap: nowrap;
 }
-
-.header-name-level-prof {
+.daggerheart .header-name-level-prof {
 	display: flex;
 	width: 80%;
 	justify-content: center;
@@ -4853,37 +4846,19 @@ body.game .app textarea {
 	flex-direction: row;
 	gap: 2em;
 }
-
-.portrait-container {
+.daggerheart .portrait-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	position: relative;
 }
-
-.portrait-image-wrapper {
+.daggerheart .portrait-image-wrapper {
 	position: relative;
 	width: 200px;
 	height: 200px;
 	flex-shrink: 0;
 }
-
-.profile-img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 200px;
-	height: auto;
-	border-radius: 50%;
-	object-fit: cover;
-	-webkit-object-fit: cover;
-	-moz-object-fit: cover;
-	-o-object-fit: cover;
-	display: block;
-	box-sizing: border-box;
-}
-
-.portrait-resources {
+.daggerheart .portrait-resources {
 	display: flex;
 	gap: 2em;
 	margin-top: -2em;
@@ -4893,15 +4868,15 @@ body.game .app textarea {
 	z-index: 10;
 }
 
-.resource {
+.daggerheart .resource {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-.resource.hope {
+.daggerheart .resource.hope {
 	position: relative;
 }
-.resource .resource-box {
+.daggerheart .resource .resource-box {
 	background: #1c1c1c;
 	border: 1px solid var(--dh-color-gold);
 	border-radius: 10px;
@@ -4912,7 +4887,7 @@ body.game .app textarea {
 	gap: 5px;
 	align-items: center;
 }
-.resource .resource-box input {
+.daggerheart .resource .resource-box input {
 	background: transparent;
 	border: none;
 	text-align: center;
@@ -4920,30 +4895,28 @@ body.game .app textarea {
 	color: white;
 	font-size: 1em;
 }
-.resource .resource-box input:focus {
+.daggerheart .resource .resource-box input:focus {
 	box-shadow: none;
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
 }
-.resource label {
+.daggerheart .resource label {
 	text-transform: uppercase;
 	font-size: 0.8em;
 	margin-top: 5px;
 }
 
-.resource-value {
+.daggerheart .resource-value {
 	min-width: 20px;
 	text-align: center;
 }
-
-.header-bottom-container {
+.daggerheart .header-bottom-container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 0.5em;
 }
-
-.charname input {
+.daggerheart .charname input {
 	text-transform: uppercase;
 	font-size: 2em;
 	font-weight: 700;
@@ -4958,22 +4931,20 @@ body.game .app textarea {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
-.charname input:focus {
+.daggerheart .charname input:focus {
 	box-shadow: none;
 }
-
-.actor .charname input {
+.daggerheart .actor .charname input {
 	text-align: left;
 }
-
-.header-domain {
+.daggerheart .header-domain {
 	display: flex;
 	gap: 2em;
 	justify-content: center;
 	margin-top: 0.5em;
 	width: 100%;
 }
-.header-domain input {
+.daggerheart .header-domain input {
 	font-size: 1rem;
 	font-weight: 200;
 	opacity: 1;
@@ -4987,16 +4958,15 @@ body.game .app textarea {
 	height: auto;
 	background: transparent;
 }
-
-.actor .header-domain {
+.daggerheart .actor .header-domain {
 	justify-content: flex-start;
 }
-.actor .header-domain input {
+.daggerheart .actor .header-domain input {
 	text-align: left;
 }
 
 /* Item sheet header specifics */
-.item .sheet-header {
+.daggerheart.item .sheet-header {
 	display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -5008,7 +4978,7 @@ body.game .app textarea {
 	max-height: 24em;
 	align-content: stretch;
 }
-.item .sheet-header .header-fields {
+.daggerheart.item .sheet-header .header-fields {
 	flex: 1;
 	border: none;
 	border-radius: 0px 10px;
@@ -5024,13 +4994,13 @@ body.game .app textarea {
 	gap: 0.5em;
 	max-width: 100%;
 }
-.item .sheet-header .header-fields input {
+.daggerheart.item .sheet-header .header-fields input {
 	background: transparent;
 }
-.item .sheet-header .header-fields input::placeholder {
+.daggerheart.item .sheet-header .header-fields input::placeholder {
 	color: rgba(230, 230, 230, 0.4196078431);
 }
-.item .sheet-header .item-charname {
+.daggerheart.item .sheet-header .item-charname {
 	max-height: 30px;
 	padding: 0px;
 	margin: 0px;
@@ -5040,7 +5010,7 @@ body.game .app textarea {
 	align-items: center;
 	width: 100%;
 }
-.item .sheet-header .item-charname input {
+.daggerheart.item .sheet-header .item-charname input {
 	text-transform: uppercase;
 	font-size: clamp(10px, 2vw, 17px);
 	width: 100%;
@@ -5062,11 +5032,11 @@ body.game .app textarea {
 	justify-content: center;
 }
 
-.npc .portrait-container {
+.daggerheart.npc .portrait-container {
 	align-self: center;
 }
 
-.npc .portrait-image-wrapper {
+.daggerheart.npc .portrait-image-wrapper {
 	position: relative;
 	width: 200px;
 	height: 250px;
@@ -5075,11 +5045,25 @@ body.game .app textarea {
 	justify-content: center;
 }
 
-.portrait-buttons {
+.daggerheart .portrait-buttons {
 	display: flex;
 	gap: 0.5em;
 	margin-bottom: -1em;
 	z-index: 10;
+}
+
+.profile-img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 200px;
+	height: auto;
+	object-fit: cover;
+	-webkit-object-fit: cover;
+	-moz-object-fit: cover;
+	-o-object-fit: cover;
+	display: block;
+	box-sizing: border-box;
 }
 
 /* Character Tab */
@@ -9920,7 +9904,7 @@ input.trait-effects.resize-ta {
 	color: var(--dh-color-gold);
 }
 
-.nav-gem {
+.daggerheart .nav-gem {
 	width: 20px;
 	height: 35px;
 	background: url('https://i.imgur.com/VSTKJWt.png') center/contain no-repeat;
@@ -9930,27 +9914,27 @@ input.trait-effects.resize-ta {
 		transform 0.2s ease,
 		filter 0.2s ease;
 }
-.nav-gem:hover {
+.daggerheart .nav-gem:hover {
 	transform: scale(1.2);
 	filter: brightness(1.3) drop-shadow(0 0 5px var(--dh-color-gold));
 }
-.nav-gem:active {
+.daggerheart .nav-gem:active {
 	transform: scale(1.1);
 }
-.nav-gem[draggable='true'] {
+.daggerheart .nav-gem[draggable='true'] {
 	cursor: grab;
 }
-.nav-gem[draggable='true']:active {
+.daggerheart .nav-gem[draggable='true']:active {
 	cursor: grabbing;
 	opacity: 0.8;
 }
 
-.item nav.sheet-tabs.tabs {
+.daggerheart .item nav.sheet-tabs.tabs {
 	margin-top: 0.1em;
 }
 
 /* Tab categories and titles */
-.tab-title {
+.daggerheart .tab-title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -9964,7 +9948,7 @@ input.trait-effects.resize-ta {
 	margin-bottom: 1.5em;
 }
 
-.tab-category {
+.daggerheart .tab-category {
 	display: flex;
 	border-bottom: 1px solid var(--dh-color-gold-dark);
 	font-size: var(--font-size-14);
@@ -9982,12 +9966,12 @@ input.trait-effects.resize-ta {
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 }
-.tab-category:hover {
+.daggerheart .tab-category:hover {
 	background: linear-gradient(90deg, #d4af37 0%, var(--dh-color-gold) 100%);
 	box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
-.editor-content * {
+.daggerheart .editor-content * {
 	-webkit-user-select: text;
 	-moz-user-select: text;
 	-ms-user-select: text;
@@ -10071,10 +10055,10 @@ input.trait-effects.resize-ta {
 	font-style: italic;
 }
 
-.prosemirror menu button {
+.daggerheart .prosemirror menu button {
 	color: var(--dh-color-off-white);
 }
-.prosemirror menu button.active {
+.daggerheart .prosemirror menu button.active {
 	color: #0b0a13;
 }
 
@@ -11135,7 +11119,7 @@ button.weapon-locked:hover {
 	border: none;
 }
 
-.sheet-tracker-sidebar {
+.daggerheart .sheet-tracker-sidebar {
 	position: absolute;
 	left: 100%;
 	top: 15%;
@@ -11146,12 +11130,12 @@ button.weapon-locked:hover {
 	z-index: 100;
 	transition: all 0.3s ease-in-out;
 }
-.sheet-tracker-sidebar.expanded {
+.daggerheart .sheet-tracker-sidebar.expanded {
 	/* Keep the same left position but show the panel */
 }
 
 /* Main tracker button */
-.tracker-main-button {
+.daggerheart .tracker-main-button {
 	width: 45px;
 	height: 36px;
 	border-radius: 0% 25% 25% 0%;
@@ -11167,18 +11151,18 @@ button.weapon-locked:hover {
 	z-index: 100;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
-.tracker-main-button:hover {
+.daggerheart .tracker-main-button:hover {
 	background: var(--dh-color-gold);
 	color: var(--dh-color-off-black);
 	transform: scale(1.1);
 	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
-.tracker-main-button i {
+.daggerheart .tracker-main-button i {
 	font-size: 16px;
 }
 
 /* Container for individual tracker buttons */
-.tracker-buttons-container {
+.daggerheart .tracker-buttons-container {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
@@ -11187,7 +11171,7 @@ button.weapon-locked:hover {
 }
 
 /* Individual tracker buttons */
-.tracker-button {
+.daggerheart .tracker-button {
 	width: 32px;
 	height: 32px;
 	border-radius: 50%;
@@ -11203,19 +11187,19 @@ button.weapon-locked:hover {
 	user-select: none;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-.tracker-button:hover {
+.daggerheart .tracker-button:hover {
 	transform: scale(1.1);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
-.tracker-button:active {
+.daggerheart .tracker-button:active {
 	transform: scale(0.95);
 }
-.tracker-button .tracker-button-value {
+.daggerheart .tracker-button .tracker-button-value {
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 	text-stroke: 1px rgba(0, 0, 0, 0.8);
 	font-size: 2.15em;
 }
-.tracker-button::after {
+.daggerheart .tracker-button::after {
 	content: attr(data-tracker-name);
 	position: absolute;
 	left: 100%;
@@ -11237,14 +11221,14 @@ button.weapon-locked:hover {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 	z-index: 1000;
 }
-.tracker-button:hover::after {
+.daggerheart .tracker-button:hover::after {
 	opacity: 1;
 	visibility: visible;
 	margin-left: 12px;
 }
 
 /* Manager panel - Using global popup styling */
-.tracker-manager-panel {
+.daggerheart .tracker-manager-panel {
 	position: absolute;
 	left: 120%;
 	top: 0;
@@ -11265,7 +11249,7 @@ button.weapon-locked:hover {
 	pointer-events: none;
 	overflow: hidden;
 }
-.tracker-manager-panel.show {
+.daggerheart .tracker-manager-panel.show {
 	opacity: 1;
 	visibility: visible;
 	transform: translateY(0) scale(1);
@@ -11273,7 +11257,7 @@ button.weapon-locked:hover {
 }
 
 /* Manager header - Using global popup header styling */
-.tracker-manager-header {
+.daggerheart .tracker-manager-header {
 	background: rgba(11, 10, 19, 0.5);
 	border-bottom: 1px solid var(--dh-color-gold);
 	padding: var(--dh-space-md) var(--dh-space-lg);
@@ -11282,7 +11266,7 @@ button.weapon-locked:hover {
 	align-items: center;
 	position: relative;
 }
-.tracker-manager-header span {
+.daggerheart .tracker-manager-header span {
 	color: var(--dh-color-gold);
 	font-weight: var(--dh-font-weight-semibold);
 	font-size: var(--dh-font-size-lg);
@@ -11291,7 +11275,7 @@ button.weapon-locked:hover {
 	text-align: center;
 	text-shadow: var(--dh-shadow-glow);
 }
-.tracker-manager-header .tracker-manager-close {
+.daggerheart .tracker-manager-header .tracker-manager-close {
 	background: var(--dh-bg-dark);
 	border: 2px solid var(--dh-border-gold-subtle);
 	color: var(--dh-color-gold);
@@ -11312,10 +11296,10 @@ button.weapon-locked:hover {
 	transform: translateY(-50%);
 	box-shadow: var(--dh-shadow-sm);
 }
-.tracker-manager-header .tracker-manager-close i {
+.daggerheart .tracker-manager-header .tracker-manager-close i {
 	margin: 0;
 }
-.tracker-manager-header .tracker-manager-close:hover {
+.daggerheart .tracker-manager-header .tracker-manager-close:hover {
 	background: var(--dh-color-gold);
 	color: var(--dh-color-off-black);
 	transform: translateY(-50%) scale(1.1);
@@ -11323,7 +11307,7 @@ button.weapon-locked:hover {
 }
 
 /* Manager content - Using global content layout */
-.tracker-manager-content {
+.daggerheart .tracker-manager-content {
 	padding: var(--dh-space-md) var(--dh-space-lg);
 	display: flex;
 	flex-direction: column;
@@ -11334,24 +11318,24 @@ button.weapon-locked:hover {
 	flex: 1;
 }
 
-.tracker-value-input {
+.daggerheart .tracker-value-input {
 	max-width: 40px;
 }
 
 /* Add tracker form - Using global section styling */
-.tracker-add-form {
+.daggerheart .tracker-add-form {
 	background: var(--dh-bg-section);
 	padding: var(--dh-space-sm) var(--dh-space-lg);
 	border-radius: var(--dh-radius-xl);
 	border: 1px solid var(--dh-border-purple);
 }
-.tracker-add-form .form-group {
+.daggerheart .tracker-add-form .form-group {
 	margin-bottom: var(--dh-space-md);
 }
-.tracker-add-form .form-group:last-of-type {
+.daggerheart .tracker-add-form .form-group:last-of-type {
 	margin-bottom: var(--dh-space-lg);
 }
-.tracker-add-form .form-group label {
+.daggerheart .tracker-add-form .form-group label {
 	color: var(--dh-color-gold);
 	font-weight: var(--dh-font-weight-semibold);
 	font-size: var(--dh-font-size-sm);
@@ -11360,8 +11344,8 @@ button.weapon-locked:hover {
 	margin-bottom: var(--dh-space-xs);
 	display: block;
 }
-.tracker-add-form .form-group input[type='text'],
-.tracker-add-form .form-group input[type='number'] {
+.daggerheart .tracker-add-form .form-group input[type='text'],
+.daggerheart .tracker-add-form .form-group input[type='number'] {
 	background: var(--dh-bg-input);
 	border: 1px solid var(--dh-border-purple);
 	border-radius: var(--dh-radius-lg);
@@ -11371,22 +11355,22 @@ button.weapon-locked:hover {
 	width: 100%;
 	transition: var(--dh-transition-normal);
 }
-.tracker-add-form .form-group input[type='text']:focus,
-.tracker-add-form .form-group input[type='number']:focus {
+.daggerheart .tracker-add-form .form-group input[type='text']:focus,
+.daggerheart .tracker-add-form .form-group input[type='number']:focus {
 	outline: none;
 	border-color: var(--dh-color-gold);
 	background: var(--dh-bg-input-focus);
 	box-shadow: var(--dh-shadow-focus);
 }
-.tracker-add-form .form-group-horizontal {
+.daggerheart .tracker-add-form .form-group-horizontal {
 	display: flex;
 	gap: var(--dh-space-lg);
 	margin-bottom: var(--dh-space-lg);
 }
-.tracker-add-form .form-group-half {
+.daggerheart .tracker-add-form .form-group-half {
 	flex: 1;
 }
-.tracker-add-form .form-group-half label {
+.daggerheart .tracker-add-form .form-group-half label {
 	color: var(--dh-color-gold);
 	font-weight: var(--dh-font-weight-semibold);
 	font-size: var(--dh-font-size-sm);
@@ -11395,7 +11379,7 @@ button.weapon-locked:hover {
 	margin-bottom: var(--dh-space-xs);
 	display: block;
 }
-.tracker-add-form .value-inputs {
+.daggerheart .tracker-add-form .value-inputs {
 	background: var(--dh-color-off-black);
 	border: 1px solid var(--dh-color-gold);
 	border-radius: var(--dh-radius-xl);
@@ -11405,7 +11389,7 @@ button.weapon-locked:hover {
 	gap: 5px;
 	box-shadow: var(--dh-shadow-sm);
 }
-.tracker-add-form .value-inputs input[type='number'] {
+.daggerheart .tracker-add-form .value-inputs input[type='number'] {
 	background: transparent;
 	border: none;
 	color: white;
@@ -11415,23 +11399,23 @@ button.weapon-locked:hover {
 	font-weight: 700;
 	min-width: 0;
 }
-.tracker-add-form .value-inputs input[type='number']:focus {
+.daggerheart .tracker-add-form .value-inputs input[type='number']:focus {
 	box-shadow: none;
 	background: rgba(255, 255, 255, 0.1);
 	border-radius: 5px;
 	outline: none;
 }
-.tracker-add-form .value-inputs .value-separator {
+.daggerheart .tracker-add-form .value-inputs .value-separator {
 	color: var(--dh-color-gold);
 	font-weight: bold;
 	font-size: 1.2em;
 }
-.tracker-add-form .color-input-wrapper {
+.daggerheart .tracker-add-form .color-input-wrapper {
 	display: flex;
 	align-items: center;
 	gap: var(--dh-space-sm);
 }
-.tracker-add-form .color-input-wrapper input[type='color'] {
+.daggerheart .tracker-add-form .color-input-wrapper input[type='color'] {
 	width: 40px;
 	height: 32px;
 	background: var(--dh-bg-input);
@@ -11440,21 +11424,21 @@ button.weapon-locked:hover {
 	cursor: pointer;
 	padding: 2px;
 }
-.tracker-add-form .color-input-wrapper input[type='color']::-webkit-color-swatch-wrapper {
+.daggerheart .tracker-add-form .color-input-wrapper input[type='color']::-webkit-color-swatch-wrapper {
 	padding: 0;
 }
-.tracker-add-form .color-input-wrapper input[type='color']::-webkit-color-swatch {
+.daggerheart .tracker-add-form .color-input-wrapper input[type='color']::-webkit-color-swatch {
 	border: none;
 	border-radius: var(--dh-radius-sm);
 }
-.tracker-add-form .color-input-wrapper .color-preview {
+.daggerheart .tracker-add-form .color-input-wrapper .color-preview {
 	width: 20px;
 	height: 20px;
 	border-radius: var(--dh-radius-full);
 	background-color: var(--dh-color-gold);
 	box-shadow: var(--dh-shadow-sm);
 }
-.tracker-add-form .tracker-add-button {
+.daggerheart .tracker-add-form .tracker-add-button {
 	background: rgba(243, 194, 103, 0.2);
 	color: var(--dh-color-gold);
 	border: 1px solid var(--dh-color-gold);
@@ -11471,25 +11455,25 @@ button.weapon-locked:hover {
 	width: 100%;
 	box-shadow: var(--dh-shadow-sm);
 }
-.tracker-add-form .tracker-add-button:hover {
+.daggerheart .tracker-add-form .tracker-add-button:hover {
 	background: var(--dh-color-gold);
 	color: var(--dh-color-off-black);
 	transform: scale(1.02);
 	box-shadow: 0 0 10px rgba(243, 194, 103, 0.5);
 }
-.tracker-add-form .tracker-add-button:active {
+.daggerheart .tracker-add-form .tracker-add-button:active {
 	transform: scale(0.98);
 	box-shadow: 0 0 5px rgba(243, 194, 103, 0.8);
 }
 
 /* Tracker list */
-.tracker-list {
+.daggerheart .tracker-list {
 	background: rgba(0, 0, 0, 0.2);
 	padding: 0.5em 1rem;
 	border-radius: 10px;
 	border: 1px solid #433f64;
 }
-.tracker-list .tracker-list-header {
+.daggerheart .tracker-list .tracker-list-header {
 	color: var(--dh-color-gold);
 	font-weight: 600;
 	font-size: 0.85rem;
@@ -11497,7 +11481,7 @@ button.weapon-locked:hover {
 	letter-spacing: 1px;
 	margin-bottom: 0.5rem;
 }
-.tracker-list .tracker-list-items .no-trackers {
+.daggerheart .tracker-list .tracker-list-items .no-trackers {
 	color: rgba(242, 243, 244, 0.6);
 	font-style: italic;
 	text-align: center;
@@ -11508,7 +11492,7 @@ button.weapon-locked:hover {
 }
 
 /* Tracker list item */
-.tracker-list-item {
+.daggerheart .tracker-list-item {
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
@@ -11520,32 +11504,32 @@ button.weapon-locked:hover {
 	transition: all 0.2s ease;
 	margin-bottom: 0.5rem;
 }
-.tracker-list-item:nth-child(even) {
+.daggerheart .tracker-list-item:nth-child(even) {
 	background: rgba(141, 120, 151, 0.05);
 }
-.tracker-list-item:hover {
+.daggerheart .tracker-list-item:hover {
 	background: rgba(67, 63, 100, 0.3);
 	border-color: rgba(243, 194, 103, 0.3);
 }
-.tracker-list-item .tracker-item-color {
+.daggerheart .tracker-list-item .tracker-item-color {
 	width: 18px;
 	height: 18px;
 	border-radius: 50%;
 	flex-shrink: 0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-.tracker-list-item .tracker-item-name {
+.daggerheart .tracker-list-item .tracker-item-name {
 	flex: 1;
 	color: var(--dh-color-off-white);
 	font-weight: 500;
 	font-size: 0.85rem;
 }
-.tracker-list-item .tracker-item-value {
+.daggerheart .tracker-list-item .tracker-item-value {
 	color: var(--dh-color-off-white);
 	font-weight: bold;
 	font-size: 0.85rem;
 }
-.tracker-list-item .tracker-item-delete {
+.daggerheart .tracker-list-item .tracker-item-delete {
 	background: rgba(255, 68, 68, 0.2);
 	color: #ff6b6b;
 	border: 1px solid rgba(255, 68, 68, 0.4);
@@ -11563,7 +11547,7 @@ button.weapon-locked:hover {
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 	padding: 0;
 }
-.tracker-list-item .tracker-item-delete:hover {
+.daggerheart .tracker-list-item .tracker-item-delete:hover {
 	background: #ff4444;
 	color: white;
 	transform: scale(1.1) rotate(90deg);
@@ -11581,7 +11565,7 @@ button.weapon-locked:hover {
 		transform: translateY(0);
 	}
 }
-.tracker-button {
+.daggerheart .tracker-button {
 	animation: fadeIn 0.3s ease-out;
 }
 
@@ -11593,13 +11577,13 @@ button.weapon-locked:hover {
 /* ----------------------------------------- */
 /* Sidebar Navigation Buttons                */
 /* ----------------------------------------- */
-.sidebar-nav-buttons {
+.daggerheart .sidebar-nav-buttons {
 	display: flex;
 	flex-direction: column;
 	gap: 6px;
 }
 
-.nav-button {
+.daggerheart .nav-button {
 	width: 45px;
 	height: 36px;
 	border-radius: 0% 25% 25% 0%;
@@ -11614,20 +11598,20 @@ button.weapon-locked:hover {
 	position: relative;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
-.nav-button i {
+.daggerheart .nav-button i {
 	font-size: 14px;
 }
-.nav-button:hover {
+.daggerheart .nav-button:hover {
 	background: var(--dh-color-gold);
 	color: var(--dh-color-off-black);
 	transform: scale(1.1);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
 }
-.nav-button.active {
+.daggerheart .nav-button.active {
 	background: var(--dh-color-gold);
 	color: var(--dh-color-off-black);
 }
-.nav-button::after {
+.daggerheart .nav-button::after {
 	content: attr(title);
 	position: absolute;
 	left: 100%;
@@ -11649,7 +11633,7 @@ button.weapon-locked:hover {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 	z-index: 1000;
 }
-.nav-button:hover::after {
+.daggerheart .nav-button:hover::after {
 	opacity: 1;
 	visibility: visible;
 	margin-left: 12px;
@@ -11666,7 +11650,7 @@ button.weapon-locked:hover {
 /* ----------------------------------------- */
 /* Tooltip for tracker main button            */
 /* ----------------------------------------- */
-.tracker-main-button::after {
+.daggerheart .tracker-main-button::after {
 	content: attr(title);
 	position: absolute;
 	left: 100%;
@@ -11689,7 +11673,7 @@ button.weapon-locked:hover {
 	z-index: 1000;
 }
 
-.tracker-main-button:hover::after {
+.daggerheart .tracker-main-button:hover::after {
 	opacity: 1;
 	visibility: visible;
 	margin-left: 12px;
@@ -11698,7 +11682,7 @@ button.weapon-locked:hover {
 /* ----------------------------------------- */
 /* Simple Tracker Bubbles                   */
 /* ----------------------------------------- */
-.tracker-bubbles {
+.daggerheart .tracker-bubbles {
 	position: absolute;
 	top: -90px;
 	right: 5px;
@@ -11707,18 +11691,18 @@ button.weapon-locked:hover {
 	z-index: 100;
 	pointer-events: none;
 }
-.tracker-bubbles .tracker-bubble {
+.daggerheart .tracker-bubbles .tracker-bubble {
 	pointer-events: all;
 }
 
-.domain-ability-button .tracker-bubbles {
+.daggerheart .domain-ability-button .tracker-bubbles {
 	top: -10px;
 	right: -10px;
 	flex-direction: row;
 	gap: 3px;
 }
 
-.tracker-bubble {
+.daggerheart .tracker-bubble {
 	min-width: 20px;
 	height: 20px;
 	border-radius: 50%;
@@ -11733,7 +11717,7 @@ button.weapon-locked:hover {
 	border: 1px solid rgba(255, 255, 255, 0.3);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
-.tracker-bubble:hover {
+.daggerheart .tracker-bubble:hover {
 	transform: scale(1.1);
 	border-color: rgba(255, 255, 255, 0.6);
 }
@@ -11741,7 +11725,7 @@ button.weapon-locked:hover {
 /* ----------------------------------------- */
 /* Tracker Notification Bubbles             */
 /* ----------------------------------------- */
-.tracker-notification-bubbles {
+.daggerheart .tracker-notification-bubbles {
 	position: absolute;
 	top: -12px;
 	right: -12px;
@@ -11752,7 +11736,7 @@ button.weapon-locked:hover {
 	pointer-events: none;
 }
 
-.tracker-notification-bubble {
+.daggerheart .tracker-notification-bubble {
 	min-width: 24px;
 	height: 24px;
 	border-radius: 50%;
@@ -11770,22 +11754,22 @@ button.weapon-locked:hover {
 	pointer-events: all;
 	user-select: none;
 }
-.tracker-notification-bubble .bubble-value {
+.daggerheart .tracker-notification-bubble .bubble-value {
 	line-height: 1;
 }
-.tracker-notification-bubble:hover {
+.daggerheart .tracker-notification-bubble:hover {
 	transform: scale(1.15);
 	border-color: rgba(255, 255, 255, 0.7);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
-.tracker-notification-bubble:active {
+.daggerheart .tracker-notification-bubble:active {
 	transform: scale(0.95);
 }
 
 /* ----------------------------------------- */
 /* Domain Ability Sidebar                   */
 /* ----------------------------------------- */
-.domain-abilities-sidebar .domain-ability-button {
+.daggerheart .domain-abilities-sidebar .domain-ability-button {
 	position: relative;
 	display: inline-block;
 	overflow: visible;
@@ -11794,7 +11778,7 @@ button.weapon-locked:hover {
 /* ----------------------------------------- */
 /* Tracker Notification Bubbles             */
 /* ----------------------------------------- */
-.tracker-notification-bubbles {
+.daggerheart .tracker-notification-bubbles {
 	position: absolute;
 	top: -12px;
 	right: -12px;
@@ -11805,7 +11789,7 @@ button.weapon-locked:hover {
 	pointer-events: none;
 }
 
-.tracker-notification-bubble {
+.daggerheart .tracker-notification-bubble {
 	min-width: 24px;
 	height: 24px;
 	border-radius: 50%;
@@ -11823,15 +11807,15 @@ button.weapon-locked:hover {
 	pointer-events: all;
 	user-select: none;
 }
-.tracker-notification-bubble .bubble-value {
+.daggerheart .tracker-notification-bubble .bubble-value {
 	line-height: 1;
 }
-.tracker-notification-bubble:hover {
+.daggerheart .tracker-notification-bubble:hover {
 	transform: scale(1.15);
 	border-color: rgba(255, 255, 255, 0.7);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
 }
-.tracker-notification-bubble:active {
+.daggerheart .tracker-notification-bubble:active {
 	transform: scale(0.95);
 }
 
@@ -11839,7 +11823,7 @@ button.weapon-locked:hover {
 ----------------------------------- */
 /* Tracker Notification Bubble Tooltips     */
 /* ----------------------------------------- */
-.tracker-notification-bubble::after {
+.daggerheart .tracker-notification-bubble::after {
 	content: attr(title);
 	position: absolute;
 	left: 50%;
@@ -11861,7 +11845,7 @@ button.weapon-locked:hover {
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 	z-index: 1000;
 }
-.tracker-notification-bubble:hover::after {
+.daggerheart .tracker-notification-bubble:hover::after {
 	opacity: 1;
 	visibility: visible;
 	margin-bottom: 12px;

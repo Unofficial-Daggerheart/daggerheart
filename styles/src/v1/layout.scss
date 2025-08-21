@@ -19,11 +19,11 @@
 }
 
 /* Window Content Styling */
-.actor .window-content,
-.item .window-content,
-.npc .window-content,
-.companion .window-content,
-.environment .window-content {
+.daggerheart.actor .window-content,
+.daggerheart.item .window-content,
+.daggerheart.npc .window-content,
+.daggerheart.companion .window-content,
+.daggerheart.environment .window-content {
 	background: transparent;
 	background-color: transparent;
 	color: #f0f0e0;
@@ -33,16 +33,16 @@
 	position: relative;
 }
 
-.item .window-content {
+.daggerheart.item .window-content {
 	padding: 1em 2em;
 }
 
 /* Window Header Styling */
-.actor .window-header,
-.npc .window-header,
-.companion .window-header,
-.item .window-header,
-.environment .window-header {
+.daggerheart.actor .window-header,
+.daggerheart.npc .window-header,
+.daggerheart.companion .window-header,
+.daggerheart.item .window-header,
+.daggerheart.environment .window-header {
 	background: transparent;
 	border: none;
 	box-shadow: none;
@@ -57,11 +57,11 @@
 }
 
 /* Sheet Backgrounds */
-.actor {
+.daggerheart.actor {
 	background: transparent;
 }
 
-.npc {
+.daggerheart.npc {
 	background: transparent;
 
 	.header-resources-row {
@@ -78,48 +78,42 @@
 	}
 }
 
-.companion {
+.daggerheart.companion {
 	background: transparent;
 }
 
-.environment {
+.daggerheart.environment {
 	background: transparent;
 }
 
-.sheet.actor,
-.sheet.npc,
-.sheet.companion,
-.sheet.item,
-.sheet.environment {
+.daggerheart.sheet.actor,
+.daggerheart.sheet.npc,
+.daggerheart.sheet.companion,
+.daggerheart.sheet.item,
+.daggerheart.sheet.environment {
 	background: rgba(11, 10, 19, 0.8392156863);
 	backdrop-filter: blur(5px);
 }
 
 /* Input Styling for Sheets */
-.daggerheart .actor input[type='text'],
-.daggerheart .actor input[type='number'],
-.daggerheart .actor input[type='password'],
-.daggerheart .actor input[type='date'],
-.daggerheart .actor input[type='time'],
-.daggerheart .actor input[type='search'] {
-	color: #f0f0e0;
-}
-
-.daggerheart .npc input[type='text'],
-.daggerheart .npc input[type='number'],
-.daggerheart .npc input[type='password'],
-.daggerheart .npc input[type='date'],
-.daggerheart .npc input[type='time'],
-.daggerheart .npc input[type='search'] {
-	color: #f0f0e0;
-}
-
-.daggerheart .companion input[type='text'],
-.daggerheart .companion input[type='number'],
-.daggerheart .companion input[type='password'],
-.daggerheart .companion input[type='date'],
-.daggerheart .companion input[type='time'],
-.daggerheart .companion input[type='search'] {
+.daggerheart.npc input[type='text'],
+.daggerheart.npc input[type='number'],
+.daggerheart.npc input[type='password'],
+.daggerheart.npc input[type='date'],
+.daggerheart.npc input[type='time'],
+.daggerheart.npc input[type='search'],
+.daggerheart.actor input[type='text'],
+.daggerheart.actor input[type='number'],
+.daggerheart.actor input[type='password'],
+.daggerheart.actor input[type='date'],
+.daggerheart.actor input[type='time'],
+.daggerheart.actor input[type='search'],
+.daggerheart.companion input[type='text'],
+.daggerheart.companion input[type='number'],
+.daggerheart.companion input[type='password'],
+.daggerheart.companion input[type='date'],
+.daggerheart.companion input[type='time'],
+.daggerheart.companion input[type='search'] {
 	color: #f0f0e0;
 }
 
@@ -176,7 +170,7 @@
 }
 
 /* Item Sheet Specific Layouts */
-.item-bg {
+.daggerheart .item-bg {
 	position: absolute;
 	top: -2.25vh;
 	left: 0;
@@ -202,7 +196,7 @@
 	border-radius: 10px;
 }
 
-.item .sheet-body .tab {
+.daggerheart.item .sheet-body .tab {
 	height: 100%;
 	overflow: visible;
 	margin: 0px;
@@ -213,11 +207,11 @@
 	border-top: 1px solid var(--dh-color-gold);
 }
 
-.item .flexcol {
+.daggerheart.item .flexcol {
 	position: relative;
 }
 
-.item .sheet-header {
+.daggerheart.item .sheet-header {
 	position: relative;
 	z-index: 1;
 }
