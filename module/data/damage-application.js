@@ -941,7 +941,7 @@ export async function rollDamage(formula, options = {}) {
 				rolls: [roll],
 				rollMode: 'roll',
 				flags: {
-					'daggerheart-unofficial': {
+					'uo-msg': {
 						rollType: 'damage',
 						actorId: config.sourceActor?.id || null,
 						actorType: config.sourceActor?.type || null,
@@ -1015,7 +1015,7 @@ export async function rollHealing(formula, options = {}) {
 				rolls: [roll],
 				rollMode: 'roll',
 				flags: {
-					'daggerheart-unofficial': {
+					'uo-msg': {
 						rollType: 'healing',
 						actorId: config.sourceActor?.id || null,
 						actorType: config.sourceActor?.type || null,
@@ -1072,7 +1072,7 @@ async function _sendDirectDamageApplicationMessages(results, sourceActor, hpDama
 			speaker: sourceActor ? ChatMessage.getSpeaker({ actor: sourceActor }) : ChatMessage.getSpeaker(),
 			content: publicContent,
 			flags: {
-				'daggerheart-unofficial': {
+				'uo-msg': {
 					messageType: 'directDamageApplied',
 					targetActorId: target.id,
 					sourceActorId: sourceActor?.id || null,
@@ -1131,7 +1131,7 @@ async function _sendDamageApplicationMessages(results, sourceActor, damageAmount
 			speaker: sourceActor ? ChatMessage.getSpeaker({ actor: sourceActor }) : ChatMessage.getSpeaker(),
 			content: publicContent,
 			flags: {
-				'daggerheart-unofficial': {
+				'uo-msg': {
 					messageType: 'damageApplied',
 					targetActorId: target.id,
 					sourceActorId: sourceActor?.id || null,
@@ -1158,7 +1158,7 @@ async function _sendDamageApplicationMessages(results, sourceActor, damageAmount
 			content: gmContent,
 			whisper: ChatMessage.getWhisperRecipients('GM'),
 			flags: {
-				'daggerheart-unofficial': {
+				'uo-msg': {
 					messageType: 'damageGMInfo',
 					targetActorId: target.id,
 					sourceActorId: sourceActor?.id || null,
@@ -1193,7 +1193,7 @@ async function _sendHealingApplicationMessages(results, sourceActor, healAmount,
 			speaker: sourceActor ? ChatMessage.getSpeaker({ actor: sourceActor }) : ChatMessage.getSpeaker(),
 			content: chatContent,
 			flags: {
-				'daggerheart-unofficial': {
+				'uo-msg': {
 					messageType: 'healingApplied',
 					targetActorId: target.id,
 					sourceActorId: sourceActor?.id || null,
@@ -1217,7 +1217,7 @@ async function _sendHealingApplicationMessages(results, sourceActor, healAmount,
 			content: gmContent,
 			whisper: ChatMessage.getWhisperRecipients('GM'),
 			flags: {
-				'daggerheart-unofficial': {
+				'uo-msg': {
 					messageType: 'healingGMInfo',
 					targetActorId: target.id,
 					sourceActorId: sourceActor?.id || null,
@@ -1249,7 +1249,7 @@ async function _sendUndoMessage(record, results) {
 		speaker: ChatMessage.getSpeaker(),
 		content: chatContent,
 		flags: {
-			'daggerheart-unofficial': {
+			'uo-msg': {
 				messageType: 'undoApplied',
 				undoType: record.type,
 				actorCount: results.length,

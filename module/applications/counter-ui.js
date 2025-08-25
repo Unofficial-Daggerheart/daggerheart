@@ -309,7 +309,7 @@ export class CounterUI {
           <p>Remaining fear: <strong>${this.count}</strong></p>
         </div>`,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						messageType: 'fearSpent',
 						amountSpent: amount,
 						remainingFear: this.count,
@@ -391,7 +391,7 @@ export class CounterUI {
           ${this.count >= 12 ? '<p class="fear-warning"><em>Maximum fear reached!</em></p>' : ''}
         </div>`,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						messageType: 'fearGained',
 						amountGained: actualAmount,
 						currentFear: this.count,
@@ -467,7 +467,7 @@ export class CounterUI {
             ${this.count >= 12 ? '<p class="fear-warning"><em>Maximum fear reached!</em></p>' : ''}
           </div>`,
 					flags: {
-						daggerheart: {
+						'uo-msg': {
 							messageType: 'fearGained',
 							amountGained: actualAmount,
 							currentFear: this.count,
