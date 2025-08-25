@@ -1680,7 +1680,7 @@ Hooks.on('renderChatLog', (app, html, data) => {
 });
 
 Hooks.on('renderChatMessage', (message, html, data) => {
-	const flags = message.flags?.['daggerheart-unofficial'];
+	const flags = message.flags?.['uo-msg'];
 	if (!flags) return;
 
 	const rollType = flags.rollType;

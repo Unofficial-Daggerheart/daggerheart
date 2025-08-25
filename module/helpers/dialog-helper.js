@@ -72,9 +72,9 @@ export class DaggerheartDialogHelper {
 							.map(
 								option => `
               <div class="checkbox-item">
-                <input type="${config.singleSelect ? 'radio' : 'checkbox'}" 
-                       id="${option.id}" 
-                       name="${config.singleSelect ? 'selection' : option.id}" 
+                <input type="${config.singleSelect ? 'radio' : 'checkbox'}"
+                       id="${option.id}"
+                       name="${config.singleSelect ? 'selection' : option.id}"
                        value="${option.value || option.id}"
                        ${option.checked ? 'checked' : ''}>
                 <label for="${option.id}">
@@ -158,7 +158,7 @@ export class DaggerheartDialogHelper {
 						speaker: ChatMessage.getSpeaker({ actor }),
 						type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 						flags: {
-							daggerheart: {
+							'uo-msg': {
 								deathMove: 'blaze-of-glory',
 								characterName: characterName,
 							},
@@ -177,7 +177,7 @@ export class DaggerheartDialogHelper {
 								speaker: ChatMessage.getSpeaker({ actor }),
 								type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 								flags: {
-									daggerheart: {
+									'uo-msg': {
 										deathMove: 'blaze-of-glory-complete',
 										characterName: characterName,
 									},
@@ -205,7 +205,7 @@ export class DaggerheartDialogHelper {
 					speaker: ChatMessage.getSpeaker({ actor }),
 					type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 					flags: {
-						daggerheart: {
+						'uo-msg': {
 							deathMove: 'avoid-death',
 							characterName: characterName,
 						},
@@ -258,7 +258,7 @@ export class DaggerheartDialogHelper {
 							type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 							rolls: [hopeResult.roll],
 							flags: {
-								daggerheart: {
+								'uo-msg': {
 									deathMove: 'avoid-death-roll',
 									characterName: characterName,
 									gainsScar: gainsScar,
@@ -301,7 +301,7 @@ export class DaggerheartDialogHelper {
 					speaker: ChatMessage.getSpeaker({ actor }),
 					type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 					flags: {
-						daggerheart: {
+						'uo-msg': {
 							deathMove: 'risk-it-all',
 							characterName: characterName,
 						},
@@ -349,7 +349,7 @@ export class DaggerheartDialogHelper {
 								type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 								rolls: [dualityResult.roll],
 								flags: {
-									daggerheart: {
+									'uo-msg': {
 										deathMove: 'risk-it-all-critical',
 										characterName: characterName,
 										hopeDieValue: hopeDieValue,
@@ -389,7 +389,7 @@ export class DaggerheartDialogHelper {
 								type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 								rolls: [dualityResult.roll],
 								flags: {
-									daggerheart: {
+									'uo-msg': {
 										deathMove: 'risk-it-all-hope',
 										characterName: characterName,
 										hopeDieValue: hopeDieValue,
@@ -440,7 +440,7 @@ export class DaggerheartDialogHelper {
 								speaker: ChatMessage.getSpeaker({ actor }),
 								type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 								flags: {
-									daggerheart: {
+									'uo-msg': {
 										deathMove: 'risk-it-all-recovery',
 										characterName: characterName,
 										hpHealing: hpHealing,
@@ -472,7 +472,7 @@ export class DaggerheartDialogHelper {
 								type: CONST.CHAT_MESSAGE_TYPES.ROLL,
 								rolls: [dualityResult.roll],
 								flags: {
-									daggerheart: {
+									'uo-msg': {
 										deathMove: 'risk-it-all-death',
 										characterName: characterName,
 										hopeDieValue: hopeDieValue,
@@ -1211,9 +1211,9 @@ export class DaggerheartDialogHelper {
 							.map(
 								option => `
               <div class="checkbox-item">
-                <input type="checkbox" 
-                       id="${option.id}" 
-                       name="${option.id}" 
+                <input type="checkbox"
+                       id="${option.id}"
+                       name="${option.id}"
                        value="${option.value}">
                 <label for="${option.id}">
                   <strong>${option.label}</strong>
@@ -1274,7 +1274,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'short-rest-start',
 						characterName: characterName,
 					},
@@ -1338,7 +1338,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'short-rest-tend-wounds',
 						characterName: characterName,
 						healingAmount: healingAmount,
@@ -1379,7 +1379,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'short-rest-clear-stress',
 						characterName: characterName,
 						stressCleared: stressCleared,
@@ -1421,7 +1421,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'short-rest-repair-armor',
 						characterName: characterName,
 						armorRepaired: armorRepaired,
@@ -1453,7 +1453,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'short-rest-prepare',
 						characterName: characterName,
 						hopeGained: 1,
@@ -1512,9 +1512,9 @@ export class DaggerheartDialogHelper {
 							.map(
 								option => `
               <div class="checkbox-item" data-option-id="${option.id}">
-                <input type="checkbox" 
-                       id="${option.id}" 
-                       name="${option.id}" 
+                <input type="checkbox"
+                       id="${option.id}"
+                       name="${option.id}"
                        value="${option.value}">
                 <label for="${option.id}">
                   <strong>${option.label}</strong>
@@ -1573,7 +1573,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-start',
 						characterName: characterName,
 					},
@@ -1637,7 +1637,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-tend-wounds',
 						characterName: characterName,
 						healingAmount: currentHP,
@@ -1668,7 +1668,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-clear-stress',
 						characterName: characterName,
 						stressCleared: currentStress,
@@ -1699,7 +1699,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-repair-armor',
 						characterName: characterName,
 						armorRepaired: currentArmorSlots,
@@ -1735,7 +1735,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-prepare',
 						characterName: characterName,
 						hopeGained: hopeGained,
@@ -1764,7 +1764,7 @@ export class DaggerheartDialogHelper {
 				speaker: ChatMessage.getSpeaker({ actor }),
 				type: CONST.CHAT_MESSAGE_TYPES.OTHER,
 				flags: {
-					daggerheart: {
+					'uo-msg': {
 						restType: 'long-rest-work-project',
 						characterName: characterName,
 					},

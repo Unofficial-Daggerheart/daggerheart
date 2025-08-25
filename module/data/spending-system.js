@@ -171,7 +171,7 @@ export async function spendStress(actor = null, amount = 1) {
         ${newStress >= maxStress ? '<p class="stress-warning"><em>Maximum stress reached!</em></p>' : ''}
       </div>`,
 			flags: {
-				daggerheart: {
+				'uo-msg': {
 					messageType: 'stressApplied',
 					actorId: targetActor.id,
 					amountApplied: actualAmount,
@@ -304,7 +304,7 @@ export async function spendHope(actor = null, amount = 1) {
         ${newHope === 0 ? '<p class="hope-warning"><em>No hope remaining!</em></p>' : ''}
       </div>`,
 			flags: {
-				daggerheart: {
+				'uo-msg': {
 					messageType: 'hopeSpent',
 					actorId: targetActor.id,
 					amountSpent: actualAmount,
@@ -437,7 +437,7 @@ export async function gainHope(actor = null, amount = 1) {
         ${newHope >= maxHope ? '<p class="hope-max"><em>Maximum hope reached!</em></p>' : ''}
       </div>`,
 			flags: {
-				daggerheart: {
+				'uo-msg': {
 					messageType: 'hopeGained',
 					actorId: targetActor.id,
 					amountGained: actualAmount,
@@ -645,7 +645,7 @@ export async function clearStress(actor = null, amount = 1) {
         ${newStress === 0 ? '<p class="stress-cleared"><em>All stress cleared!</em></p>' : ''}
       </div>`,
 			flags: {
-				daggerheart: {
+				'uo-msg': {
 					messageType: 'stressCleared',
 					actorId: targetActor.id,
 					amountCleared: actualAmount,
@@ -783,7 +783,7 @@ await game.daggerheart.rollHandler.dualityWithDialog({
     ui.notifications.warn("Item not found!");
     return;
   }
-  
+
   const itemData = item.system;
   const description = await TextEditor.enrichHTML(
     itemData.description,
@@ -801,7 +801,7 @@ await game.daggerheart.rollHandler.dualityWithDialog({
       itemType: item.type,
       system: item.system
     }) : \`<div class="item-card-chat">\${item.name}</div>\`;
-  
+
   ChatMessage.create({
       user: game.user.id,
       speaker: item.parent ? ChatMessage.getSpeaker({ actor: item.parent }) : ChatMessage.getSpeaker(),
@@ -846,7 +846,7 @@ await game.daggerheart.rollHandler.dualityWithDialog({
         type: CONST.CHAT_MESSAGE_TYPES.ROLL,
         rolls: [roll]
       });
-      
+
       if (chatMessage?.id && game.dice3d) {
         await game.dice3d.waitFor3DAnimationByMessageID(chatMessage.id);
       }
@@ -1307,7 +1307,7 @@ export async function adjustArmorSlots(actor = null, delta = 1) {
         <p>${detailText}</p>
         <p>Armor slots: ${newVal}/${max}</p>
       </div>`,
-			flags: { daggerheart: { messageType: 'armorSlots', delta: actual } },
+			flags: { 'uo-msg': { messageType: 'armorSlots', delta: actual } },
 		});
 		return true;
 	} catch (e) {
