@@ -2,9 +2,9 @@ export class SpotlightInitiativeTracker {
 	static ID = 'daggerheart.spotlight-initiative';
 
 	static initialize() {
-		Hooks.on('renderCombatTracker', this._onRenderCombatTracker.bind(this));
 		Hooks.on('combatStart', this._onCombatStart.bind(this));
 		Hooks.on('createCombat', this._onCreateCombat.bind(this));
+		Hooks.on('renderCombatTracker', this._onRenderCombatTracker.bind(this));
 
 		game.socket.on('module.daggerheart', this._handleSocketMessage.bind(this));
 	}
@@ -92,7 +92,7 @@ export class SpotlightInitiativeTracker {
 			} else {
 				const isOwner = combatant.isOwner;
 				if (isOwner) {
-					const requests = game.combat.getFlag('daggerheart', 'spotlightRequests') || {};
+					const requests = game.combat.getFlag('daggerheart-unofficial', 'spotlightRequests') || {};
 					const hasRequested = requests[combatantId];
 
 					if (hasRequested) {
