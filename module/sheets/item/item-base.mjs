@@ -182,9 +182,6 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 	static async #editImage(event, elem) {
 		event.preventDefault();
 
-		console.log(this.item);
-		console.log(this.system);
-
 		const fp = new FilePicker({
 			type: 'image',
 			current: this.item.img,
