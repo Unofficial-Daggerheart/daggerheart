@@ -1,0 +1,15 @@
+// ============================================
+// System Style Structure
+// ============================================
+// Organized Architecture:
+// 1. System - Variables and base css
+// 2. Elements - General HTML  elements
+// 3. Components - Reusable GUI components
+// 4. Applications - Specific module functionaliy
+// ============================================
+
+// Styles - v2
+@forward 'v2/system';
+@forward 'v2/elements';
+@forward 'v2/components';
+@forward 'v2/applications';

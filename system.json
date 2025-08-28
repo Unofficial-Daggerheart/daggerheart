@@ -19,7 +19,16 @@
 		}
 	],
 	"esmodules": ["module/daggerheart.js"],
-	"styles": ["styles/daggerheart.css"],
+	"styles": [
+		{
+			"src": "styles/daggerheart.v1.css",
+			"layer": "compatibility"
+		},
+		{
+			"src": "styles/daggerheart.v2.css",
+			"layer": null
+		}
+	],
 	"packs": [
 		{
 			"name": "daggerheart-macros",

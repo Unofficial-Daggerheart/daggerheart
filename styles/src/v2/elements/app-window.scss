@@ -1,0 +1,81 @@
+@layer system {
+	.uo.application {
+		overflow: visible;
+
+		.window-header {
+			z-index: 999;
+			margin: 2px;
+
+			backdrop-filter: var(--uo-minimal-blur);
+			background-color: var(--uo-bg-darker);
+			border-radius: var(--uo-border-radius-large) var(--uo-border-radius-large) 0 0;
+			border-bottom: 1px solid var(--uo-border-dark);
+
+			transition: all 120ms ease-in-out;
+			transform-style: preserve-3d;
+			transform-origin: top center;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+		}
+
+		.window-header button {
+			border: none;
+		}
+
+		.window-content {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 10;
+
+			margin: 0;
+			padding: 0;
+
+			overflow: visible;
+			backdrop-filter: none;
+		}
+
+		.window-resize-handle {
+			z-index: 99;
+			opacity: 100%;
+			inset: auto 4px 4px auto;
+			transition: all 120ms ease-in-out;
+		}
+
+		.controls-dropdown {
+			z-index: 99;
+
+			button {
+				border: none;
+			}
+		}
+	}
+
+	.uo.flip.application {
+		.window-header {
+			transform: rotateY(180deg);
+		}
+
+		.window-resize-handle {
+			opacity: 0%;
+		}
+	}
+
+	.uo.minimized.application {
+		.window-header {
+			border-radius: var(--uo-border-radius-large);
+		}
+	}
+
+	.uo.minimized.application,
+	.uo.minimizing.application,
+	.uo.uo.maximized.application,
+	.uo.uo.maximizing.application {
+		.window-resize-handle {
+			opacity: 0%;
+			transition: unset;
+		}
+	}
+}

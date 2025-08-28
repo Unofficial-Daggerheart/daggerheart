@@ -1,0 +1,118 @@
+@layer system {
+	.uo.item {
+		display: flex;
+
+		min-width: 320px;
+		min-height: 480px;
+
+		.title-box {
+			position: relative;
+			overflow: hidden;
+			flex: 1;
+			width: 100%;
+			min-height: 14em;
+			max-height: 16em;
+
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: -2px; // Fix flicker on resize, set to -2px
+				background: linear-gradient(to top, var(--uo-bg-darker) 0%, var(--uo-bg-invisible) 60%);
+				z-index: 1;
+				pointer-events: none;
+			}
+		}
+
+		.title-box img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: all 0.3s ease;
+		}
+
+		.title-box input {
+			position: absolute;
+			bottom: 0;
+			z-index: 2;
+
+			width: 90%;
+			margin: 16px;
+			padding: 6px;
+
+			font-size: 1.8em;
+			font-weight: bold;
+			min-height: 1.65em;
+
+			outline: none;
+			box-shadow: none;
+			background: none;
+			transition: all 0.3s ease;
+
+			color: var(--uo-text-accent);
+			text-shadow: 2px 2px 4px var(--uo-text-shadow);
+
+			border: 1px solid var(--uo-border-accent-invisible);
+
+			&:hover {
+				border-bottom: 1px solid var(--uo-border-accent-darker);
+			}
+
+			&:focus,
+			&:active {
+				border: 1px solid var(--uo-border-accent-invisible);
+				border-bottom: 1px solid var(--uo-border-accent-dark);
+			}
+		}
+
+		.content-box {
+			display: flex;
+			flex-direction: column;
+			flex: 2;
+			padding: 18px;
+			overflow-y: auto;
+
+			border-top: 2px solid var(--uo-bg-accent);
+		}
+	}
+
+	// TODO Move this to a general section
+	// or reimplement for back side forms
+	.uo.item {
+		.content-box {
+			.header-box {
+				display: flex;
+				flex-direction: row;
+				margin-bottom: 12px;
+				align-items: stretch;
+
+				.separator {
+					padding: 4px;
+					min-width: 18px;
+					text-align: center;
+				}
+			}
+
+			.editor-box {
+				flex: 1;
+				min-height: 14em;
+			}
+
+			.editor-box .editor {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+
+	.uo.item.minimized {
+		min-width: 0px;
+		min-height: 0px;
+	}
+}

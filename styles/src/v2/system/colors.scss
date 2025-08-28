@@ -1,0 +1,76 @@
+// Dark Theme Colors
+@layer system {
+	body.theme-dark {
+		/* Core Color Palette */
+		--uo-color-main: 0.975 0 90;
+		--uo-color-main-low: 0.875 0 90;
+		--uo-color-main-lower: 0.675 0 90;
+
+		--uo-color-base: 0.32 0.082 278;
+		--uo-color-base-low: 0.3885 0.0621 288;
+		--uo-color-base-lower: 0.1513 0.0192 288;
+		--uo-color-base-high: 0.42 0.082 288;
+		--uo-color-base-higher: 0.56 0.074 288;
+
+		//--uo-color-accent: 0.85 0.12 78;
+		--uo-color-accent: 0.8 0.124 82;
+		--uo-color-accent-low: 0.8 0.12 76;
+		--uo-color-accent-lower: 0.75 0.12 74;
+
+		/* Background Colors */
+
+		--uo-bg-dark: oklch(var(--uo-color-base-lower) / 85%);
+		--uo-bg-darker: oklch(var(--uo-color-base-lower) / 95%);
+		--uo-bg-overlay: oklch(var(--uo-color-base-lower) / 75%);
+		--uo-bg-invisible: oklch(var(--uo-color-base-lower) / 00%);
+
+		--uo-bg-input: oklch(0.22 0.0275 290 / 80%);
+		--uo-bg-input-fade: oklch(var(--uo-color-base-low) / 35%);
+		--uo-bg-input-focus: oklch(var(--uo-color-base-low) / 55%);
+		--uo-bg-input-invisible: oklch(var(--uo-color-base-low) / 00%);
+
+		--uo-bg-accent: oklch(var(--uo-color-accent) / 95%);
+		--uo-bg-accent-dark: oklch(var(--uo-color-accent-lower) / 85%);
+		--uo-bg-accent-darker: oklch(var(--uo-color-accent-lower) / 55%);
+		--uo-bg-accent-invisible: oklch(var(--uo-color-accent-lower) / 00%);
+
+		/* Border Colors */
+
+		--uo-border-dark: oklch(var(--uo-color-base-high) / 65%);
+		--uo-border-darker: oklch(var(--uo-color-base-high) / 85%);
+		--uo-border-invisible: oklch(var(--uo-color-base-high) / 00%);
+
+		--uo-border-input-dark: oklch(0.388 0.062 288);
+		--uo-border-input-darker: oklch(var(--uo-color-accent-lower) / 15%);
+		--uo-border-input-invisible: oklch(var(--uo-color-accent-lower) / 00%);
+
+		--uo-border-accent-dark: oklch(var(--uo-color-accent-lower) / 25%);
+		--uo-border-accent-darker: oklch(var(--uo-color-accent-lower) / 15%);
+		--uo-border-accent-invisible: oklch(var(--uo-color-accent-lower) / 00%);
+
+		/* Text Colors */
+
+		--uo-text-gray: oklch(var(--uo-color-accent));
+		--uo-text-white: oklch(var(--uo-color-accent));
+
+		--uo-text: oklch(var(--uo-color-main) / 90%);
+		--uo-text-hover: oklch(var(--uo-color-main) / 95%);
+		--uo-text-active: oklch(var(--uo-color-main) / 85%);
+
+		--uo-text-dark: oklch(var(--uo-color-main-low) / 80%);
+		--uo-text-darker: oklch(var(--uo-color-main-lower) / 60%);
+		--uo-text-invisible: oklch(var(--uo-color-accent-lower) / 00%);
+
+		--uo-text-accent: oklch(var(--uo-color-accent) / 95%);
+		--uo-text-accent-dark: oklch(var(--uo-color-accent-low) / 80%);
+		--uo-text-accent-darker: oklch(var(--uo-color-accent-lower) / 60%);
+		--uo-text-accent-invisible: oklch(var(--uo-color-accent-lower) / 00%);
+
+		/* Extra Colors */
+
+		--uo-text-shadow: var(--uo-bg-overlay);
+	}
+
+	// Light Theme Colors
+	// body.theme-light { TODO }
+}

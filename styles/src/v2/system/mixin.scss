@@ -1,0 +1,13 @@
+/* General Variables */
+@layer system {
+	body.theme-dark {
+		--uo-app-border: 1px solid rgba(0, 0, 0, 0.4);
+		--uo-app-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+
+		--uo-panel-border: 2px solid rgba(0, 0, 0, 0.6);
+		--uo-panel-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+
+		--uo-node-item-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+		--uo-node-value-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+	}
+}

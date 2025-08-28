@@ -1,0 +1,25 @@
+/* General Variables */
+@layer system {
+	body {
+		--uo-size-xs: 18px;
+		--uo-size-sm: 24px;
+		--uo-size-md: 28px;
+
+		--uo-space-xs: 0.15rem;
+		--uo-space-sm: 0.25rem;
+		--uo-space-md: 0.55rem;
+		--uo-space-lg: 0.85rem;
+		--uo-space-xl: 1.15rem;
+
+		--uo-minimal-blur: blur(6px);
+		--uo-extended-blur: blur(8px);
+
+		--uo-border-radius: 4px;
+		--uo-border-radius-big: 6px;
+		--uo-border-radius-large: 8px;
+
+		--uo-transition-fast: all 0.2s ease;
+		--uo-transition-base: all 0.4s ease;
+		--uo-transition-slow: all 0.6s ease;
+	}
+}

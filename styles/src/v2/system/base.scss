@@ -1,0 +1,402 @@
+/* Application V2 - Base */
+@layer system {
+	.uo {
+		color: var(--uo-text);
+
+		border: none;
+		outline: none;
+		background: none;
+
+		overflow: unset;
+		perspective: 9999px;
+
+		box-shadow: none;
+		backdrop-filter: none;
+
+		img,
+		input {
+			border: none;
+			outline: none;
+			background: none;
+
+			transition: unset;
+
+			box-shadow: none;
+			backdrop-filter: none;
+
+			&:hover,
+			&:focus,
+			&:active {
+				border: none;
+				outline: none;
+			}
+		}
+
+		button {
+			color: var(--uo-text);
+			border: 1px solid var(--uo-border-input-dark);
+
+			&:hover,
+			&:focus,
+			&:active {
+				color: var(--uo-text-hover);
+				border: 1px solid var(--uo-border-input-dark);
+				outline: none;
+			}
+		}
+
+		.no-click {
+			pointer-events: none;
+		}
+	}
+}
+
+/* Application V2 - Base Inputs */
+@layer system {
+	.uo input {
+		height: 26px;
+		min-height: var(--uo-size-sm);
+		padding-left: 0.85em;
+		padding-right: 0.85em;
+
+		border-radius: var(--uo-border-radius);
+		border: 1px solid var(--uo-border-input-dark);
+		background-color: var(--uo-bg-input);
+
+		font-size: 0.85em;
+		letter-spacing: 0.5px;
+		color: var(--uo-text);
+
+		transition: all 240ms ease;
+
+		// TODO Fix the transitions again
+		&:hover {
+			border: 1px solid var(--uo-border-invisible);
+			background: var(--uo-bg-input-focus);
+		}
+
+		&:focus,
+		&:active {
+			border: 1px solid var(--uo-border-darker);
+			background: var(--uo-bg-input-focus);
+		}
+
+		&::placeholder {
+			color: var(--uo-text-darker);
+		}
+	}
+
+	.uo button {
+		gap: var(--uo-space-sm);
+
+		min-width: var(--uo-size-md);
+		min-height: var(--uo-size-md);
+
+		border-radius: var(--uo-border-radius);
+	}
+
+	// Note: Abuse overflow to
+	// get a nice color selector
+	.uo .wrap-color {
+		position: relative;
+
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+		justify-items: center;
+
+		width: 100%;
+		height: 26px;
+		padding: 0;
+
+		border-radius: var(--uo-border-radius);
+		border: 1px solid var(--uo-border-input-dark);
+
+		transition: all 240ms ease;
+
+		&:hover {
+			border: 1px solid var(--uo-border-invisible);
+			background: var(--uo-bg-input-focus);
+		}
+
+		input[type='color'] {
+			position: absolute;
+			top: -8px;
+			left: -4px;
+			right: -4px;
+			bottom: -8px;
+
+			cursor: pointer;
+
+			width: unset;
+			height: unset;
+			border: unset;
+			outline: unset;
+
+			min-width: none;
+			max-width: unset;
+
+			padding: 0;
+		}
+	}
+}
+
+/* Application V2 - Base Cards */
+@layer system {
+	.uo {
+		.card-alt,
+		.card-base {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 10;
+
+			padding-top: 4px;
+
+			display: flex;
+			flex-direction: column;
+
+			border: var(--uo-app-border);
+			box-shadow: var(--uo-app-shadow);
+
+			backdrop-filter: var(--uo-extended-blur);
+			background-color: var(--uo-bg-darker);
+
+			border-radius: var(--uo-border-radius-large);
+
+			// transition: all 120ms ease-in-out;
+			// transform-style: preserve-3d;
+			// transform-origin: top center;
+			// backface-visibility: hidden;
+			// -webkit-backface-visibility: hidden;
+		}
+	}
+
+	// 		.card-alt {
+	// 			transform: rotateY(180deg);
+	// 		}
+	// 		.card-base {
+	// 			z-index: 1;
+	// 		}
+}
+
+// 	.uo.flip {
+// 		.card-alt {
+// 			transform: rotateY(0deg);
+// 		}
+// 		.card-base {
+// 			transform: rotateY(180deg);
+// 		}
+// 	}
+//}
+
+// @layer system {
+// 	.uo .field {
+// 		display: flex;
+// 		gap: 0.5rem;
+// 		margin-bottom: 1rem;
+
+// 		.half {
+// 			flex: 1;
+// 		}
+
+// 		.horizontal {
+// 			display: flex;
+// 			gap: var(--dh-space-lg);
+// 			margin-bottom: var(--dh-space-lg);
+// 		}
+
+// 		.row {
+// 			flex-direction: row;
+// 		}
+
+// 		.col {
+// 			flex-direction: column;
+// 		}
+
+// 		.box {
+// 			flex: 1;
+// 			margin-bottom: 0;
+// 		}
+
+// 		.min-max {
+// 			background: var(--dh-bg-input);
+// 			border: 1px solid var(--dh-border-accent-darker);
+// 			border-radius: var(--dh-border-radius);
+// 			margin: 0 8px;
+// 			display: flex;
+// 			align-items: center;
+// 			gap: 5px;
+// 			// do we wanta box shadow on inputs?
+// 			//box-shadow: var(--dh-shadow-sm);
+// 		}
+
+// 		.color-input {
+// 			margin: auto;
+// 			min-width: 80%;
+// 			min-height: 28px;
+
+// 			border: 1px solid var(--dh-border-accent-darker);
+// 			border-radius: var(--dh-border-radius);
+
+// 			&:hover {
+// 				background: var(--dh-bg-input-focus);
+// 			}
+
+// 			&:focus,
+// 			&:active {
+// 				background: var(--dh-bg-input-focus);
+// 			}
+// 		}
+
+// 		margin-bottom: var(--dh-space-md);
+
+// 		&:last-of-type {
+// 			margin-bottom: var(--dh-space-lg);
+// 		}
+
+// 		label {
+// 			color: var(--dh-color-gold);
+// 			font-weight: var(--dh-font-weight-semibold);
+// 			font-size: var(--dh-font-size-sm);
+// 			text-transform: uppercase;
+// 			letter-spacing: 1px;
+// 			margin-bottom: var(--dh-space-xs);
+// 			display: block;
+// 		}
+
+// 		// input[type='text'],
+// 		// input[type='number'] {
+// 		// 	background: var(--dh-bg-input);
+// 		// 	border: 1px solid var(--dh-border-purple);
+// 		// 	border-radius: var(--dh-radius-lg);
+// 		// 	padding: var(--dh-space-sm);
+// 		// 	color: var(--dh-color-off-white);
+// 		// 	font-size: var(--dh-font-size-sm);
+// 		// 	width: 100%;
+// 		// 	transition: var(--dh-transition-normal);
+
+// 		// 	&:focus {
+// 		// 		outline: none;
+// 		// 		border-color: var(--dh-color-gold);
+// 		// 		background: var(--dh-bg-input-focus);
+// 		// 		box-shadow: var(--dh-shadow-focus);
+// 		// 	}
+// 		// }
+// 	}
+// }
+
+/* Application V2 - Prosemirror Editor */
+@layer system {
+	.uo .editor {
+		box-shadow: unset;
+		background: unset;
+
+		color: var(--uo-text);
+
+		border-radius: var(--uo-border-radius);
+		background-color: var(--uo-bg-input);
+		border: 1px solid var(--uo-border-input-dark);
+
+		menu {
+			background-color: var(--uo-bg-overlay);
+
+			.active {
+				color: var(--uo-bg-accent-dark);
+
+				&:hover {
+					color: var(--uo-text-accent);
+				}
+
+				&:focus,
+				&:active {
+					color: var(--uo-bg-accent-darker);
+				}
+			}
+		}
+
+		button {
+			outline: none;
+			box-shadow: none;
+			color: var(--uo-text-dark);
+			transition: all 240ms ease;
+			border: 1px solid var(--uo-border-invisible);
+			background: var(--uo-bg-input);
+
+			&:hover {
+				color: var(--uo-text);
+				border: 1px solid var(--uo-border-darker);
+				background: var(--uo-bg-input-focus);
+			}
+
+			&:focus,
+			&:active {
+				color: var(--uo-text-darker);
+				border: 1px solid var(--uo-border-darker);
+				background: var(--uo-bg-input-fade);
+			}
+		}
+
+		.toggle {
+			top: 6px;
+			right: 6px;
+		}
+
+		.cm-editor,
+		.cm-scroller,
+		.cm-activeLine,
+		.cm-activeLineGutter,
+		code-mirror {
+			box-shadow: unset;
+			background: unset;
+		}
+
+		.cm-gutters {
+			color: var(--uo-text-darker);
+			background: var(--uo-bg-overlay);
+		}
+
+		.cm-line,
+		.cm-active,
+		.editor-content {
+			color: var(--uo-text);
+			background: unset;
+			padding: 0.75em;
+		}
+
+		.cm-content {
+			color: var(--uo-text);
+			background: var(--uo-bg-input-fade);
+		}
+	}
+
+	.uo {
+		.content-link {
+			margin: 1em;
+			color: var(--uo-text-accent);
+
+			background: rgba(243, 194, 103, 0.1);
+			border-radius: var(--uo-border-radius);
+			border: 1px solid rgba(243, 194, 103, 0.2);
+
+			i {
+				color: var(--uo-text-accent);
+			}
+		}
+	}
+
+	#prosemirror-dropdown ul {
+		font-size: 0.85em;
+		letter-spacing: 0.5px;
+		color: var(--uo-text);
+
+		padding-left: 0.85em;
+		padding-right: 0.85em;
+
+		background-color: var(--uo-bg-input);
+		border-radius: var(--uo-border-radius);
+		border: 1px solid var(--uo-border-input-dark);
+	}
+}

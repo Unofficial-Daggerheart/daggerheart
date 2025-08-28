@@ -442,6 +442,8 @@ input.trait-effects.resize-ta {
 
 /* Weapons */
 .weapon-group {
+	flex: 1;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -450,6 +452,8 @@ input.trait-effects.resize-ta {
 }
 
 .weapon-row {
+	flex: 1;
+	height: 100%;
 	flex-direction: column;
 	display: flex;
 	margin-bottom: 5px;
@@ -634,6 +638,7 @@ input.trait-effects.resize-ta {
 }
 
 .weapon-box {
+	flex: 1;
 	color: white;
 	padding: 0;
 	border: 1px solid #433f64;
