@@ -33,6 +33,7 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 		},
 		actions: {
 			'to-chat': this.#toChat,
+			'image-edit': this.#editImage,
 			'panel-open': this.#openPanel,
 			'panel-close': this.#closePanel,
 			'resources-create': this.#createResources,
@@ -176,6 +177,26 @@ export class ItemBaseSheet extends api.HandlebarsApplicationMixin(sheets.ItemShe
 			speaker: ChatMessage.getSpeaker({ actor }),
 			content: chatCard,
 		});
+	}
+
+	static async #editImage(event, elem) {
+		event.preventDefault();
+
+		console.log(this.item);
+		console.log(this.system);
+
+		const fp = new FilePicker({
+			type: 'image',
+			current: this.item.img,
+			callback: path => {
+				this.item.update({
+					img: path
+				});
+			},
+			top: this.position.top + 40,
+			left: this.position.left + 10,
+		});
+		return fp.browse();
 	}
 
 	static async #openPanel(event, elem) {
