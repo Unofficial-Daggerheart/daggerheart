@@ -1,0 +1,28 @@
+<div id="card-base-{{id}}" class="card-base">
+	<div class="title-box">
+		<img src="{{item.img}}" data-edit="img" title="{{item.name}}" data-action="flipCard" data-target="default" />
+		<input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'DH.Name'}}" autocomplete="off" />
+	</div>
+
+	{{!-- Card content area --}}
+	<div class="content-box">
+		{{!-- Category and rarity section --}}
+		<div class="header-box">
+			<input type="text" name="system.category" value="{{system.category}}" placeholder="{{localize 'DH.Category'}}" />
+			<span class="separator">-</span>
+			<input type="text" name="system.rarity" value="{{system.rarity}}" placeholder="{{localize 'DH.Rarity'}}" />
+		</div>
+
+		{{!-- Description section --}}
+		<div class="editor-box">
+			<prose-mirror
+				name="system.description"
+				button="true"
+				editable="{{editable}}"
+				toggled="false"
+				value="{{system.description}}">
+				{{{descriptionHTML}}}
+			</prose-mirror>
+		</div>
+	</div>
+</div>

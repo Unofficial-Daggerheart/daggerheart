@@ -8,7 +8,7 @@ import { SimpleArmorSheet } from './applications/armor-sheet.js';
 import { SimpleActorSheet, NPCActorSheet } from './applications/actor-sheet.js';
 import { CompanionActorSheet } from './applications/actor-sheet-companion.js';
 import { EnvironmentActorSheet } from './applications/actor-sheet-environment.js';
-import { preloadHandlebarsTemplates } from './helpers/templates.js';
+import { loadTemplates, registerPartials } from './helpers/templates.js';
 import {
 	createDaggerheartMacro,
 	createSpendFearMacro,
@@ -45,6 +45,8 @@ import { FearParticleSettings } from './applications/FearParticleSettings.mjs';
 
 import * as itemData from './data/item/_module.mjs';
 import * as actorData from './data/actor/_module.mjs';
+
+import { itemSheet } from './sheets/_module.mjs';
 
 // Range Measurement System
 import {
@@ -275,10 +277,7 @@ Hooks.once('init', async function () {
 	CONFIG.Item.documentClass = SimpleItem;
 	CONFIG.Item.typeLabels = {
 		item: 'ITEM.TypeItem',
-		inventory: 'ITEM.TypeInventory',
-		worn: 'ITEM.TypeWorn',
 		domain: 'ITEM.TypeDomain',
-		vault: 'ITEM.Vault',
 		ancestry: 'ITEM.TypeAncestry',
 		community: 'ITEM.TypeCommunity',
 		class: 'ITEM.TypeClass',
@@ -286,11 +285,15 @@ Hooks.once('init', async function () {
 		weapon: 'ITEM.TypeWeapon',
 		armor: 'ITEM.TypeArmor',
 		passive: 'ITEM.TypePassive',
+		// Depricating
+		worn: 'ITEM.TypeWorn',
+		vault: 'ITEM.Vault',
+		inventory: 'ITEM.TypeInventory',
 	};
 
 	foundry.documents.collections.Items.unregisterSheet('core', foundry.applications.sheets.ItemSheetV2);
-	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleItemSheet, {
-		types: ['item', 'inventory', 'worn', 'domain', 'vault', 'ancestry', 'community', 'class', 'subclass', 'passive'],
+	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', itemSheet.base, {
+		types: ['item', 'domain', 'ancestry', 'community', 'class', 'subclass', 'passive'],
 		makeDefault: true,
 		label: 'SHEET.Item.default',
 	});
@@ -303,6 +306,12 @@ Hooks.once('init', async function () {
 		types: ['armor'],
 		makeDefault: true,
 		label: 'SHEET.Item.armor',
+	});
+	// Keep these here as a fall back and test case while we move a head to depricate these items
+	foundry.documents.collections.Items.registerSheet('daggerheart-unofficial', SimpleItemSheet, {
+		types: ['worn', 'vault', 'inventory'],
+		makeDefault: true,
+		label: 'SHEET.Item.default',
 	});
 
 	// Setup settings - system configuration and default values
@@ -548,7 +557,8 @@ Hooks.once('init', async function () {
 		enricher: DaggerheartTemplateEnricher,
 	});
 
-	await preloadHandlebarsTemplates();
+	await registerPartials();
+	await loadTemplates();
 });
 
 Hooks.on('updateActor', (actor, data, options, userId) => {

@@ -1,6 +1,6 @@
 {
 	"id": "daggerheart-unofficial",
-	"version": "3.0.11",
+	"version": "3.0.12",
 	"title": "Daggerheart Unofficial",
 	"url": "",
 	"description": "Unofficial Daggerheart Game System",
@@ -89,6 +89,6 @@
 		]
 	},
 	"manifest": "https://raw.githubusercontent.com/unofficial-daggerheart/daggerheart/master/system.json",
-	"download": "https://github.com/unofficial-daggerheart/daggerheart/archive/refs/tags/v3.0.10.zip",
+	"download": "https://github.com/unofficial-daggerheart/daggerheart/archive/refs/tags/v3.0.12.zip",
 	"background": "https://raw.githubusercontent.com/Unofficial-Daggerheart/daggerheart/refs/tags/v2.12.9/assets/branding/coverart.webp"
 }

@@ -1,0 +1,19 @@
+<div id="panel-menu-{{id}}" class="panel-menu{{#if panels.state.showMenu}} show{{/if}}">
+	{{#each panels.list}}
+	<div class="btn" data-action="panel-open" data-key="{{@key}}" data-target="{{this.id}}">
+		<i class="{{this.icon}}"></i>
+	</div>
+	{{/each}}
+	<div class="tracker-list">
+		{{#each resources.list}}
+		<div
+			class="item"
+			data-index="{{@index}}"
+			data-tracker-name="{{this.name}}"
+			title="{{this.name}}: {{this.value}} / {{this.max}}"
+			style="background-color: {{this.color}};">
+			<span class="value no-click">{{this.value}}</span>
+		</div>
+		{{/each}}
+	</div>
+</div>
